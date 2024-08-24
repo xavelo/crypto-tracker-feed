@@ -11,7 +11,7 @@
 	<groupId>com.xavelo</groupId>
 	<artifactId>api-kafka-producer</artifactId>
 	<name>api-kafka-producer</name>
-	<description>API Kafka Producer</description>
+	<description>API Kafka Producer </description>
 	<properties>
 		<java.version>17</java.version>
 		<docker.image.prefix>xavelo</docker.image.prefix>
