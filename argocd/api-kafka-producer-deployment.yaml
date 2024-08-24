@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-template-deployment
+  name: api-kafka-producer-deployment
   annotations:
     commitID: "02a5581540d4adbb0999a0daa0592b97fd3293f8"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: api-template
+      app: api-kafka-producer
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,10 +17,10 @@ spec:
   template:
     metadata:
       labels:
-        app: api-template
+        app: api-kafka-producer
     spec:
       containers:
-        - name: api-template
-          image: 'xavelo/api-template-spring-boot:02a5581540d4adbb0999a0daa0592b97fd3293f8'
+        - name: api-kafka-producer
+          image: 'xavelo/api-kafka-producer:02a5581540d4adbb0999a0daa0592b97fd3293f8'
           ports:
             - containerPort: 80

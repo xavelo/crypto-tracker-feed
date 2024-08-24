@@ -1,4 +1,4 @@
-package com.xavelo.template;
+package com.xavelo.kafka;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

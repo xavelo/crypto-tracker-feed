@@ -1,8 +1,8 @@
 name: CI/CD Pipeline
 
 env:
-  GIT_REPO: 'api-template-spring-boot'
-  K8S_DEPLOYMENT: 'api-template-deployment.yyaml'
+  GIT_REPO: 'api-kafka-producer'
+  K8S_DEPLOYMENT: 'api-kafka-producer-deployment.yaml'
 
 on:
   push:

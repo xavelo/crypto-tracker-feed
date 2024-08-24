@@ -1,4 +1,4 @@
-package com.xavelo.template;
+package com.xavelo.kafka;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
