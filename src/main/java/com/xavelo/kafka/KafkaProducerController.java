@@ -9,20 +9,26 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.info.GitProperties;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class KafkaProducerController {
 
-    private static final Logger logger = LogManager.getLogger(HelloController.class);
+    private static final Logger logger = LogManager.getLogger(KafkaProducerController.class);
 
     @Value("${HOSTNAME:unknown}")
     private String podName;
 
     @Autowired
     private GitProperties gitProperties;
+
+    @Autowired
+    private KafkaService kafkaService;
 
     @GetMapping("/hello")
     public ResponseEntity<Hello> hello() {
@@ -33,6 +39,14 @@ public class HelloController {
         logger.info("hello from pod {} - commitId {} - commitTime {}", commitId, commitTime, podName);
         return ResponseEntity.ok(new Hello("hello from pod " + podName, commitId + " - " + commitTime));
     }
+
+    @PostMapping("/produce")
+    public ResponseEntity<Message> produce(@RequestBody Message message) {
+        kafkaService.produceMessage("test-topic", message);
+        return new ResponseEntity<>(message, HttpStatus.CREATED);
+    }
+
+
 
 }
 
