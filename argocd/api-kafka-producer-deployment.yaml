@@ -5,7 +5,7 @@ metadata:
   annotations:
     commitID: "06ffa2f422d0cb8ec439ee9197d96230bbff2ef4"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: api-kafka-producer
