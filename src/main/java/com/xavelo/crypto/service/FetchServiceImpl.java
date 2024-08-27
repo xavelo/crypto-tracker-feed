@@ -3,10 +3,12 @@ package com.xavelo.crypto.service;
 import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.Instant;
 
+@Component
 public class FetchServiceImpl implements FetchService {
 
     @Override
