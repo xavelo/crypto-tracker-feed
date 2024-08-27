@@ -7,7 +7,7 @@ import com.xavelo.crypto.Price;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public class FetcherServiceImpl implements FetcherService {
+public class FetchServiceImpl implements FetchService {
 
     @Override
     public Price fetchPrice(Coin coin) {

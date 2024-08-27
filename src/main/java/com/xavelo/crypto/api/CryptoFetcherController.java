@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import com.xavelo.crypto.Coin;
+import com.xavelo.crypto.Price;
+import com.xavelo.crypto.service.FetchService;
 import com.xavelo.crypto.service.KafkaService;
 import com.xavelo.crypto.service.Message;
 import org.apache.logging.log4j.LogManager;
@@ -13,10 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.info.GitProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CryptoFetcherController {
@@ -32,6 +32,9 @@ public class CryptoFetcherController {
     @Autowired
     private KafkaService kafkaService;
 
+    @Autowired
+    private FetchService fetchService;
+
     @GetMapping("/hello")
     public ResponseEntity<Hello> hello() {
         String commitId = gitProperties.getCommitId();
@@ -40,6 +43,13 @@ public class CryptoFetcherController {
         String commitTime = dateTime.format(formatter);
         logger.info("hello from pod {} - commitId {} - commitTime {}", commitId, commitTime, podName);
         return ResponseEntity.ok(new Hello("hello from pod " + podName, commitId + " - " + commitTime));
+    }
+
+    @GetMapping("/fetch/{coin}")
+    public ResponseEntity<Price> fetch(@PathVariable String coin) {
+        logger.info("-> fetch {}", coin);
+        Price price = fetchService.fetchPrice(Coin.valueOf(coin));
+        return ResponseEntity.ok(price);
     }
 
     @PostMapping("/produce")
