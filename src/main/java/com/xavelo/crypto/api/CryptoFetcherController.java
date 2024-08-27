@@ -9,7 +9,7 @@ import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.adapter.PriceFetchException;
 import com.xavelo.crypto.service.FetchService;
-import com.xavelo.crypto.service.KafkaService;
+import com.xavelo.crypto.adapter.KafkaAdapter;
 import com.xavelo.crypto.service.Message;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +32,7 @@ public class CryptoFetcherController {
     private GitProperties gitProperties;
 
     @Autowired
-    private KafkaService kafkaService;
+    private KafkaAdapter kafkaAdapter;
 
     @Autowired
     private FetchService fetchService;
@@ -61,7 +61,7 @@ public class CryptoFetcherController {
 
     @PostMapping("/produce")
     public ResponseEntity<Message> produce(@RequestBody Message message) {
-        kafkaService.produceMessage("test-topic", message);
+        kafkaAdapter.produceMessage("test-topic", message);
         return new ResponseEntity<>(message, HttpStatus.CREATED);
     }
 

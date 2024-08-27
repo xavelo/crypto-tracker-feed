@@ -32,8 +32,8 @@ public class CoinGeckoApiAdapter implements PriceService {
     @Override
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {
         try {
-            String url = String.format("%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s", apiUrl, coin.name().toLowerCase(), currency.name().toLowerCase(), API_KEY);
-
+            String url = String.format("%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s", apiUrl, coin.getFullName(), currency.name().toLowerCase(), API_KEY);
+            logger.debug("CoinGecko API URL {}", url);
             CoinGeckoResponse response = restTemplate.getForObject(url, CoinGeckoResponse.class);
 
             if (response == null || response.getPrice(coin, currency) == null) {
