@@ -61,7 +61,7 @@ public class CryptoFetcherController {
 
     @PostMapping("/produce")
     public ResponseEntity<Message> produce(@RequestBody Message message) {
-        kafkaAdapter.produceMessage("test-topic", message);
+        kafkaAdapter.produceMessage("test-topic", message.getValue());
         return new ResponseEntity<>(message, HttpStatus.CREATED);
     }
 
