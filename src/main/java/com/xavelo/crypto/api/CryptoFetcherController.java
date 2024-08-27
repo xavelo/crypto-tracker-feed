@@ -47,7 +47,7 @@ public class CryptoFetcherController {
         return ResponseEntity.ok("pong from pod " + podName);
     }
 
-    @GetMapping("/fetch/{coin}")
+    @GetMapping("/fetch/{coin}/{currency}")
     public ResponseEntity<Price> fetch(@PathVariable String coin, @PathVariable String currency) {
         logger.info("-> fetch coin {} in {} currency", coin, currency);
         try {
