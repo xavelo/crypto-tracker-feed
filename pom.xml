@@ -9,13 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xavelo</groupId>
-	<artifactId>api-kafka-producer</artifactId>
-	<name>api-kafka-producer</name>
-	<description>API Kafka Producer </description>
+	<artifactId>crypto</artifactId>
+	<name>fetcher</name>
+	<description>Crypto Fetcher</description>
 	<properties>
 		<java.version>17</java.version>
 		<docker.image.prefix>xavelo</docker.image.prefix>
-		<docker.image.name>api-kafka-producer</docker.image.name>
+		<docker.image.name>crypto-fetcher</docker.image.name>
 	</properties>
 	<dependencies>
 		<dependency>

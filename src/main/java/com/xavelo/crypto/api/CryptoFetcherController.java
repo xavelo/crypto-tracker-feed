@@ -1,9 +1,11 @@
-package com.xavelo.kafka;
+package com.xavelo.crypto.api;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import com.xavelo.crypto.service.KafkaService;
+import com.xavelo.crypto.service.Message;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class KafkaProducerController {
+public class CryptoFetcherController {
 
-    private static final Logger logger = LogManager.getLogger(KafkaProducerController.class);
+    private static final Logger logger = LogManager.getLogger(CryptoFetcherController.class);
 
     @Value("${HOSTNAME:unknown}")
     private String podName;

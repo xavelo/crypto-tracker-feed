@@ -1,4 +1,4 @@
-package com.xavelo.kafka;
+package com.xavelo.crypto.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
