@@ -7,7 +7,7 @@ import com.xavelo.crypto.adapter.PriceFetchException;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface FetchService {
+public interface PriceService {
 
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException;
 

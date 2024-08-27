@@ -5,7 +5,9 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import com.xavelo.crypto.Coin;
+import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
+import com.xavelo.crypto.adapter.PriceFetchException;
 import com.xavelo.crypto.service.FetchService;
 import com.xavelo.crypto.service.KafkaService;
 import com.xavelo.crypto.service.Message;
@@ -46,10 +48,15 @@ public class CryptoFetcherController {
     }
 
     @GetMapping("/fetch/{coin}")
-    public ResponseEntity<Price> fetch(@PathVariable String coin) {
+    public ResponseEntity<Price> fetch(@PathVariable String coin, @PathVariable String currency) {
         logger.info("-> fetch {}", coin);
-        Price price = fetchService.fetchPrice(Coin.valueOf(coin));
-        return ResponseEntity.ok(price);
+        try {
+            Price price = fetchService.fetchPrice(Coin.valueOf(coin), Currency.valueOf(currency));
+            return ResponseEntity.ok(price);
+        } catch (PriceFetchException pfe) {
+            logger.error("Failed to fetch price for {} in {}", coin, currency, pfe);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/produce")
