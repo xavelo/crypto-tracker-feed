@@ -2,8 +2,8 @@ package com.xavelo.crypto;
 
 public enum Coin {
 
-    BTC("Bitcoin"),
-    ETH("Ethereum"),
+    BTC("bitcoin"),
+    ETH("ethereum"),
     HBAR("Hedera Hashgraph"),
     ADA("Cardano");
 
