@@ -4,10 +4,9 @@ import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.service.PriceService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,7 +16,7 @@ import java.time.Instant;
 @Component
 public class CoinGeckoApiAdapter implements PriceService {
 
-    private static final Logger logger = LogManager.getLogger(CoinGeckoApiAdapter.class);
+    private static final Logger logger = LoggerFactory.getLogger(CoinGeckoApiAdapter.class);
 
     //TODO - add to a seccret
     private static final String API_KEY = "CG-k26E4qpRpFckxcfdrcq3DTH7";

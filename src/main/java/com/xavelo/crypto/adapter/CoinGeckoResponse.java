@@ -15,10 +15,6 @@ public class CoinGeckoResponse {
         @JsonProperty("current_price")
         private BigDecimal currentPrice;
 
-        // You can add other fields here if needed in the future
-        private String id;
-        private String symbol;
-        private String name;
     }
 
     // Convenience method to get the first coin's current price
