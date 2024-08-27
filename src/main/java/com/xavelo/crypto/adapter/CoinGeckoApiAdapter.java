@@ -5,7 +5,6 @@ import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.service.PriceService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,7 +12,6 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Component
-@Primary
 public class CoinGeckoApiAdapter implements PriceService {
 
     private final RestTemplate restTemplate;
