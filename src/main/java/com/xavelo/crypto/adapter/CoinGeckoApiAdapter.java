@@ -7,6 +7,7 @@ import com.xavelo.crypto.service.PriceService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -34,17 +35,21 @@ public class CoinGeckoApiAdapter implements PriceService {
         try {
             String url = String.format("%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s", apiUrl, coin.getFullName(), currency.name().toLowerCase(), API_KEY);
             logger.debug("CoinGecko API URL {}", url);
-            CoinGeckoResponse response = restTemplate.getForObject(url, CoinGeckoResponse.class);
 
-            if (response == null || response.getPrice(coin, currency) == null) {
+
+            CoinGeckoResponse response = restTemplate.getForObject(url, CoinGeckoResponse.class);
+            BigDecimal price = null;
+            if (response != null) {
+                price = response.getCurrentPrice();
+            } else {
                 throw new PriceFetchException("Unable to fetch price from CoinGecko API");
             }
 
             logger.debug("CoinGeckoResponse response {}", response);
-
-            BigDecimal price = response.getPrice(coin, currency);
             return new Price(coin, price, currency, Instant.now());
         } catch (Exception e) {
+            String url = String.format("%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s", apiUrl, coin.getFullName(), currency.name().toLowerCase(), API_KEY);
+            logger.debug("CoinGecko API URL {}", url);
             throw new PriceFetchException("Error fetching price from CoinGecko API", e);
         }
     }
