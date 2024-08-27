@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: crypto-fetcher-deployment
   annotations:
-    commitID: "d41ce3ea74e3027a30636067cdca53b4007f36ae"
+    commitID: "c45c5bcc996eaa9659c134f1771244619bca123c"
 spec:
   replicas: 1
   selector:
@@ -21,6 +21,6 @@ spec:
     spec:
       containers:
         - name: api-kafka-producer
-          image: 'xavelo/crypto-fetcher:d41ce3ea74e3027a30636067cdca53b4007f36ae'
+          image: 'xavelo/crypto-fetcher:c45c5bcc996eaa9659c134f1771244619bca123c'
           ports:
             - containerPort: 80
