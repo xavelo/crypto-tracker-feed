@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-kafka-producer-deployment
+  name: crypto-fetcher-deployment
   annotations:
     commitID: "ea23b777736fe248943c21679f3314097fbd68cf"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-kafka-producer
+      app: crypto-fetcher
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       labels:
-        app: api-kafka-producer
+        app: crypto-fetcher
     spec:
       containers:
         - name: api-kafka-producer
