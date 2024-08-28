@@ -15,6 +15,8 @@ public class PublishServiceImpl implements PublishService {
 
     private static final Logger logger = LoggerFactory.getLogger(PublishServiceImpl.class);
 
+    private static final String CRYPTO_PRICE_UPDATES_TOPICS = "crypto-price-updates-topic";
+
     @Autowired
     KafkaAdapter kafkaAdapter;
 
@@ -22,6 +24,6 @@ public class PublishServiceImpl implements PublishService {
     public void publishPrice(Price price) throws JsonProcessingException {
         String message = PriceSerializer.serializeToJson(price);
         logger.info("publishing price update {}", message);
-        kafkaAdapter.produceMessage("test-topic", message);
+        kafkaAdapter.produceMessage(CRYPTO_PRICE_UPDATES_TOPICS, message);
     }
 }
