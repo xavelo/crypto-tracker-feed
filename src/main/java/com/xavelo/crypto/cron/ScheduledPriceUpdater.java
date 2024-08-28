@@ -18,6 +18,7 @@ public class ScheduledPriceUpdater {
 
     @Scheduled(fixedRate = 60000) // Run every minute
     public void scheduledPriceUpdate() throws PriceFetchException {
+        System.out.println("scheduledPriceUpdate...");
         priceService.fetchPrice(Coin.BTC, Currency.USD);
         priceService.fetchPrice(Coin.ETH, Currency.USD);
     }
