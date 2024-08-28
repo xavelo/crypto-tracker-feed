@@ -1,5 +1,6 @@
 package com.xavelo.crypto.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
@@ -11,6 +12,6 @@ public interface FetchService {
 
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException;
 
-    public Price fetchAndPublishPrice(Coin coin, Currency currency) throws PriceFetchException;
+    public Price fetchAndPublishPrice(Coin coin, Currency currency) throws PriceFetchException, JsonProcessingException;
 
 }

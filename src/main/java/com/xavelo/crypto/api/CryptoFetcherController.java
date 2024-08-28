@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
@@ -52,7 +53,7 @@ public class CryptoFetcherController {
     public ResponseEntity<Price> fetch(@PathVariable String coin, @PathVariable String currency) {
         logger.info("-> fetch coin {} in {} currency", coin, currency);
         try {
-            Price price = fetchService.fetchAndPublishPrice(Coin.valueOf(coin), Currency.valueOf(currency));
+            Price price = fetchService.fetchPrice(Coin.valueOf(coin), Currency.valueOf(currency));
             return ResponseEntity.ok(price);
         } catch (PriceFetchException pfe) {
             logger.error("Failed to fetch price for {} in {}", coin, currency, pfe);
@@ -60,10 +61,19 @@ public class CryptoFetcherController {
         }
     }
 
-    @PostMapping("/produce")
-    public ResponseEntity<Message> produce(@RequestBody Message message) {
-        kafkaAdapter.produceMessage("test-topic", message.getValue());
-        return new ResponseEntity<>(message, HttpStatus.CREATED);
+    @GetMapping("/publish/{coin}/{currency}")
+    public ResponseEntity<Price> fetchAndPublish(@PathVariable String coin, @PathVariable String currency) {
+        logger.info("-> fetch and publish coin {} in {} currency", coin, currency);
+        try {
+            Price price = fetchService.fetchAndPublishPrice(Coin.valueOf(coin), Currency.valueOf(currency));
+            return ResponseEntity.ok(price);
+        } catch (PriceFetchException pfe) {
+            logger.error("Failed to fetch price for {} in {}", coin, currency, pfe);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (JsonProcessingException jpe) {
+            logger.error("Failed to process price format for {} in {}", coin, currency, jpe);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 }
