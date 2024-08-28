@@ -22,29 +22,26 @@ public class CoinGeckoApiAdapter implements PriceService {
 
     private static final Logger logger = LogManager.getLogger(CoinGeckoApiAdapter.class);
 
+    private static final String PRICE_URL_TEMPLATE = "%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s";
+
     //TODO - add to a seccret
-    private static final String API_KEY = "CG-k26E4qpRpFckxcfdrcq3DTH7";
+    private static final String COINGECKO_API_KEY = "CG-k26E4qpRpFckxcfdrcq3DTH7";
 
-    private final RestTemplate restTemplate;
-    private final String apiUrl;
+    private final String COINGECKO_BASE_URL;
 
-    public CoinGeckoApiAdapter(RestTemplate restTemplate, @Value("${coingecko.api.url}") String apiUrl) {
-        this.restTemplate = restTemplate;
-        this.apiUrl = apiUrl;
+    public CoinGeckoApiAdapter(@Value("${coingecko.api.url}") String apiUrl) {
+        this.COINGECKO_BASE_URL = apiUrl;
     }
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) {
 
-        String url = getUrl(coin, currency);
+        String url = String.format(PRICE_URL_TEMPLATE, COINGECKO_BASE_URL, coin.getFullName(), currency.name().toLowerCase(), COINGECKO_API_KEY);
+        logger.info("GET request to CoinGecko API URL {}", url);
+
         HttpResponse<JsonNode> response = Unirest.get(url)
                 .header("accept", "application/json")
                 .asJson();
-
-        HttpResponse<String> strResponse = Unirest.get(url)
-                .header("accept", "application/json")
-                .asString();
-        System.out.println("strRessponse: " + strResponse.getBody());
 
         String coinPrice = "0";
         if (response.isSuccess()) {
@@ -52,7 +49,6 @@ public class CoinGeckoApiAdapter implements PriceService {
             System.out.println("Parsed JSON:");
             System.out.println(jsonNode);
 
-            // Example of accessing a specific field
             coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
             logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
             System.out.println("Bitcoin current price: " + coinPrice);
@@ -62,13 +58,6 @@ public class CoinGeckoApiAdapter implements PriceService {
 
         return new Price(coin, BigDecimal.valueOf(Long.valueOf(coinPrice)), currency, Instant.now());
 
-    }
-
-    private String getUrl(Coin coin, Currency currency) {
-        String url = String.format("%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s", apiUrl, coin.getFullName(), currency.name().toLowerCase(), API_KEY);
-        logger.info("GET request to CoinGecko API URL {}", url);
-        System.out.println("GET request to CoinGecko API URL " + url);
-        return url;
     }
 
 }
