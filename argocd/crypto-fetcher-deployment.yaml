@@ -20,7 +20,7 @@ spec:
         app: crypto-fetcher
     spec:
       containers:
-        - name: api-kafka-producer
+        - name: crypto-fetcher
           image: 'xavelo/crypto-fetcher:c4e1c8e7aea7c8395dccc443af2ebb5a25db7078'
           ports:
             - containerPort: 80
