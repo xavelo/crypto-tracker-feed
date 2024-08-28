@@ -11,4 +11,6 @@ public interface FetchService {
 
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException;
 
+    public Price fetchAndPublishPrice(Coin coin, Currency currency) throws PriceFetchException;
+
 }
