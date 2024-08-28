@@ -52,7 +52,7 @@ public class CryptoFetcherController {
     public ResponseEntity<Price> fetch(@PathVariable String coin, @PathVariable String currency) {
         logger.info("-> fetch coin {} in {} currency", coin, currency);
         try {
-            Price price = fetchService.fetchPrice(Coin.valueOf(coin), Currency.valueOf(currency));
+            Price price = fetchService.fetchAndPublishPrice(Coin.valueOf(coin), Currency.valueOf(currency));
             return ResponseEntity.ok(price);
         } catch (PriceFetchException pfe) {
             logger.error("Failed to fetch price for {} in {}", coin, currency, pfe);
