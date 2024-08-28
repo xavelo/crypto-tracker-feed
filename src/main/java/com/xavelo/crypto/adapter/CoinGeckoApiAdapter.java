@@ -44,7 +44,7 @@ public class CoinGeckoApiAdapter implements PriceService {
         HttpResponse<String> strResponse = Unirest.get(url)
                 .header("accept", "application/json")
                 .asString();
-        System.out.println("strRessponse: " + strResponse);
+        System.out.println("strRessponse: " + strResponse.getBody());
 
         String coinPrice = "0";
         if (response.isSuccess()) {
@@ -53,7 +53,7 @@ public class CoinGeckoApiAdapter implements PriceService {
             System.out.println(jsonNode);
 
             // Example of accessing a specific field
-            coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.name().toLowerCase()).getInt(currency.getFullName().toLowerCase()));
+            coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.getFullName().toLowerCase()));
             logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
             System.out.println("Bitcoin current price: " + coinPrice);
         } else {
