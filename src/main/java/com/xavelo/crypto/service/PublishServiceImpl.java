@@ -1,6 +1,8 @@
 package com.xavelo.crypto.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.Price;
+import com.xavelo.crypto.PriceSerializer;
 import com.xavelo.crypto.adapter.KafkaAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,8 +19,9 @@ public class PublishServiceImpl implements PublishService {
     KafkaAdapter kafkaAdapter;
 
     @Override
-    public void publishPrice(Price price) {
-        logger.info("publishing price update for {}: {}{}", price.getCoin(), price.getPrice(), price.getCurrency());
-        kafkaAdapter.produceMessage("test-topic", price.getCoin() + " " + price.getPrice() + "  " + price.getCurrency());
+    public void publishPrice(Price price) throws JsonProcessingException {
+        String message = PriceSerializer.serializeToJson(price);
+        logger.info("publishing price update {}", message);
+        kafkaAdapter.produceMessage("test-topic", message);
     }
 }
