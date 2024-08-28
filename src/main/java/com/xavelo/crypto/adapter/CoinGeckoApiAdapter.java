@@ -4,8 +4,8 @@ import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.service.PriceService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -20,7 +20,7 @@ import kong.unirest.Unirest;
 @Component
 public class CoinGeckoApiAdapter implements PriceService {
 
-    private static final Logger logger = LoggerFactory.getLogger(CoinGeckoApiAdapter.class);
+    private static final Logger logger = LogManager.getLogger(CoinGeckoApiAdapter.class);
 
     //TODO - add to a seccret
     private static final String API_KEY = "CG-k26E4qpRpFckxcfdrcq3DTH7";
@@ -53,7 +53,7 @@ public class CoinGeckoApiAdapter implements PriceService {
             System.out.println(jsonNode);
 
             // Example of accessing a specific field
-            coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.getFullName().toLowerCase()));
+            coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
             logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
             System.out.println("Bitcoin current price: " + coinPrice);
         } else {
