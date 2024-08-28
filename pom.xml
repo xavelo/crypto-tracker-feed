@@ -27,6 +27,12 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
+		<!-- unirest -->
+		<dependency>
+			<groupId>com.konghq</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>3.11.09</version>
+		</dependency>
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
