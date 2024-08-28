@@ -48,7 +48,7 @@ public class CoinGeckoApiAdapter implements PriceService {
             System.out.println(jsonNode);
 
             // Example of accessing a specific field
-            coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName()).getInt(currency.getFullName().toLowerCase()));
+            coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.name()).getInt(currency.getFullName().toLowerCase()));
             logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
             System.out.println("Bitcoin current price: " + coinPrice);
         } else {
