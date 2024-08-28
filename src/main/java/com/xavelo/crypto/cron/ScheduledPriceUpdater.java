@@ -1,26 +1,27 @@
 package com.xavelo.crypto.cron;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.adapter.PriceFetchException;
-import com.xavelo.crypto.service.PriceService;
+import com.xavelo.crypto.service.FetchService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ScheduledPriceUpdater {
 
-    private final PriceService priceService;
+    private final FetchService fetchService;
 
-    public ScheduledPriceUpdater(PriceService priceService) {
-        this.priceService = priceService;
+    public ScheduledPriceUpdater(FetchService fetchService) {
+        this.fetchService = fetchService;
     }
 
     @Scheduled(fixedRate = 60000) // Run every minute
-    public void scheduledPriceUpdate() throws PriceFetchException {
+    public void scheduledPriceUpdate() throws PriceFetchException, JsonProcessingException {
         System.out.println("scheduledPriceUpdate...");
-        priceService.fetchPrice(Coin.BTC, Currency.USD);
-        priceService.fetchPrice(Coin.ETH, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.BTC, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.ETH, Currency.USD);
     }
 
 }
