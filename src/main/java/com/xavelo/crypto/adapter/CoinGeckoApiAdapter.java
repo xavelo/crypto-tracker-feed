@@ -60,7 +60,7 @@ public class CoinGeckoApiAdapter implements PriceService {
     }
 
     private String getUrl(Coin coin, Currency currency) {
-        String url = String.format("%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s", apiUrl, coin.getFullName(), currency.name().toLowerCase(), API_KEY);
+        String url = String.format("%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s", apiUrl, coin.getFullName(), currency.getName().toLlowercase(), API_KEY);
         logger.info("GET request to CoinGecko API URL {}", url);
         return url;
     }
