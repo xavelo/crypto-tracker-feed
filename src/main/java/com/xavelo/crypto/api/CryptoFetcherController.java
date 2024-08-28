@@ -12,8 +12,8 @@ import com.xavelo.crypto.service.FetchService;
 import com.xavelo.crypto.adapter.KafkaAdapter;
 import com.xavelo.crypto.service.Message;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.info.GitProperties;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class CryptoFetcherController {
 
-    private static final Logger logger = LogManager.getLogger(CryptoFetcherController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CryptoFetcherController.class);
 
     @Value("${HOSTNAME:unknown}")
     private String podName;

@@ -4,11 +4,10 @@ import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.service.PriceService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -20,7 +19,7 @@ import kong.unirest.Unirest;
 @Component
 public class CoinGeckoApiAdapter implements PriceService {
 
-    private static final Logger logger = LogManager.getLogger(CoinGeckoApiAdapter.class);
+    private static final Logger logger = LoggerFactory.getLogger(CoinGeckoApiAdapter.class);
 
     private static final String PRICE_URL_TEMPLATE = "%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s";
 
