@@ -45,14 +45,12 @@ public class CoinGeckoApiAdapter implements PriceService {
         String coinPrice = "0";
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();
-            System.out.println("Parsed JSON:");
-            System.out.println(jsonNode);
+            logger.debug("Parsed JSON: {}", jsonNode);
 
             coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
             logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
-            System.out.println("Bitcoin current price: " + coinPrice);
         } else {
-            System.out.println("Failed to retrieve data. Status code: " + response.getStatus());
+            logger.error("Failed to retrieve data. Status code: {}", response.getStatus());
         }
 
         return new Price(coin, BigDecimal.valueOf(Long.valueOf(coinPrice)), currency, Instant.now());
