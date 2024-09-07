@@ -11,7 +11,6 @@ import com.xavelo.crypto.Price;
 import com.xavelo.crypto.adapter.PriceFetchException;
 import com.xavelo.crypto.service.FetchService;
 import com.xavelo.crypto.adapter.KafkaAdapter;
-import com.xavelo.crypto.service.Message;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +31,6 @@ public class CryptoFetcherController {
 
     @Autowired
     private GitProperties gitProperties;
-
-    @Autowired
-    private KafkaAdapter kafkaAdapter;
 
     @Autowired
     private FetchService fetchService;
