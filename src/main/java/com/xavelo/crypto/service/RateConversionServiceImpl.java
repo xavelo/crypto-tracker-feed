@@ -21,7 +21,7 @@ public class RateConversionServiceImpl implements RateConversionService {
     @Override
     public BigDecimal convertToUSD(Currency from, BigDecimal amount) {
         double rate = rateConversionAdapter.getRate(from);        
-        return BigDecimal.valueOf(rate).divide(amount, new MathContext(amount.scale(), RoundingMode.HALF_UP));
+        return amount.divide(BigDecimal.valueOf(rate), new MathContext(amount.scale(), RoundingMode.HALF_UP));
     }
 
 }
