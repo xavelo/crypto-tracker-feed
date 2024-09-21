@@ -82,6 +82,8 @@ public class BitpandaApiAdapter implements PriceService {
                 return "25";
             case DOT:
                 return "51";
+            case HBAR:
+                return "62";
             default:
                 return null;
         }
