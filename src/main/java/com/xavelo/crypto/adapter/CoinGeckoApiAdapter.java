@@ -38,7 +38,7 @@ public class CoinGeckoApiAdapter implements PriceService {
     public Price fetchPrice(Coin coin, Currency currency) {
 
         String url = String.format(PRICE_URL_TEMPLATE, COINGECKO_BASE_URL, coin.getFullName(), currency.name().toLowerCase(), COINGECKO_API_KEY);
-        logger.info("GET request to CoinGecko API URL {}", url);
+        logger.debug("GET request to CoinGecko API URL {}", url);
 
         HttpResponse<JsonNode> response = Unirest.get(url)
                 .header("accept", "application/json")

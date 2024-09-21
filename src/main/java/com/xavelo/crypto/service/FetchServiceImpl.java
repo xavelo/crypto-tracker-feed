@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
+import com.xavelo.crypto.adapter.BitpandaApiAdapter;
 import com.xavelo.crypto.adapter.PriceFetchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -19,19 +20,18 @@ public class FetchServiceImpl implements FetchService {
 
     private final PriceService priceService;
     private final PublishService publishService;
-    private final BitpandaFetcher bitpandaFetcher;
+    private final BitpandaApiAdapter bitpandaApiAdapter;
 
-    @Autowired
-    public FetchServiceImpl(PriceService priceService, PublishService publishService, BitpandaFetcher bitpandaFetcher) {
+    public FetchServiceImpl(PriceService priceService, PublishService publishService, BitpandaApiAdapter bitpandaApiAdapter) {
         this.priceService = priceService;
         this.publishService = publishService;
-        this.bitpandaFetcher = bitpandaFetcher;
+        this.bitpandaApiAdapter = bitpandaApiAdapter;
     }
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {
         // test
-        Price p = bitpandaFetcher.fetchPrice(coin, currency);
+        Price p = bitpandaApiAdapter.fetchPrice(coin, currency);
         logger.info("Price obtained from Bitpanda: {}", p);
         logger.info("Fetching price for {} in {}", coin, currency); // Log fetching price
         return priceService.fetchPrice(coin, currency);

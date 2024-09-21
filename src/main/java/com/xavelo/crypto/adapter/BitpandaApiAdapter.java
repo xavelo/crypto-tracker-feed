@@ -29,7 +29,7 @@ public class BitpandaApiAdapter implements PriceService {
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) {
-        logger.info("Fetching price from Bitpandafor {} in {}", coin, currency);
+        logger.info("Fetching price from Bitpanda for {} in {}", coin, currency);
         String assetId = getAssetId(coin);
         
         HttpClient client = HttpClient.newHttpClient();                
@@ -50,7 +50,8 @@ public class BitpandaApiAdapter implements PriceService {
             return new Price(coin, new BigDecimal(price), currency, Instant.now());
         } catch (IOException | InterruptedException e) {
             logger.error("Error fetching price from Bitpanda: {}", e.getMessage());
-            return null; // Handle exceptions appropriately
+            // TODO - handle exceptions appropriately
+            return null;
         }        
     }
 
@@ -64,6 +65,6 @@ public class BitpandaApiAdapter implements PriceService {
                 return null;
         }
     }
-    
+
 }
 
