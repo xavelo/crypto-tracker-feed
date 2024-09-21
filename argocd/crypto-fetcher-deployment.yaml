@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: crypto-fetcher-deployment
   annotations:
-    commitID: "daef3e890a875c7fe8d8cf22826c820b8da45c93"
+    commitID: "03631d64d3cf84ffda0fd515e49fd2ae36e2e399"
 spec:
   replicas: 1
   selector:
@@ -21,6 +21,6 @@ spec:
     spec:
       containers:
         - name: crypto-fetcher
-          image: 'xavelo/crypto-fetcher:daef3e890a875c7fe8d8cf22826c820b8da45c93'
+          image: 'xavelo/crypto-fetcher:03631d64d3cf84ffda0fd515e49fd2ae36e2e399'
           ports:
             - containerPort: 80
