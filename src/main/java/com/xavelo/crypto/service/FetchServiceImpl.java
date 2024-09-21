@@ -32,6 +32,7 @@ public class FetchServiceImpl implements FetchService {
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {
         // test
         Price p = bitpandaFetcher.fetchPrice(coin, currency);
+        logger.info("Price obtained from Bitpanda: {}", p);
         logger.info("Fetching price for {} in {}", coin, currency); // Log fetching price
         return priceService.fetchPrice(coin, currency);
     }
