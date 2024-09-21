@@ -17,8 +17,12 @@ public class PublishServiceImpl implements PublishService {
 
     private static final String CRYPTO_PRICE_UPDATES_TOPICS = "crypto-price-updates-topic";
 
+    private final KafkaAdapter kafkaAdapter;
+
     @Autowired
-    KafkaAdapter kafkaAdapter;
+    public PublishServiceImpl(KafkaAdapter kafkaAdapter) {
+        this.kafkaAdapter = kafkaAdapter;
+    }
 
     @Override
     public void publishPrice(Price price) throws JsonProcessingException {
