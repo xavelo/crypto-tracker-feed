@@ -14,10 +14,6 @@ import kong.unirest.Unirest;
 public class RateConversionAdapter {    
 
     private static final Logger logger = LoggerFactory.getLogger(RateConversionAdapter.class);
-    
-    public RateConversionAdapter() {
-        
-    }   
 
     public double getRate(Currency currency) {
         logger.info("Getting exchange rate for {}", currency);

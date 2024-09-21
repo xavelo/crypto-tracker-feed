@@ -19,6 +19,7 @@ import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.service.PriceService;
+import com.xavelo.crypto.service.RateConversionService;
 
 
 @Component
@@ -28,6 +29,12 @@ public class BitpandaApiAdapter implements PriceService {
     private static final Logger logger = LoggerFactory.getLogger(BitpandaApiAdapter.class);
 
     private static final String BITPANDA_API_URL = "https://api.bitpanda.com/v1/assets/prices";
+
+    private final RateConversionService rateConversionService;
+
+    public BitpandaApiAdapter(RateConversionService rateConversionService) {
+        this.rateConversionService = rateConversionService;
+    }
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) {
@@ -47,9 +54,14 @@ public class BitpandaApiAdapter implements PriceService {
             logger.info("Response: " + response.body());           
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response.body());
-            String price = rootNode.path("data").get(0).path("attributes").path("price").asText();                        
-            logger.info("Price: {}", price);
-            return new Price(coin, new BigDecimal(price), currency, Instant.now());
+            String strPrice = rootNode.path("data").get(0).path("attributes").path("price").asText();                        
+            logger.info("Price: {}", strPrice);
+            BigDecimal price = new BigDecimal(strPrice);
+            // All Bitpanda prices are in EUR
+            if (currency == Currency.USD) {
+                price = rateConversionService.convert(currency, price);
+            }
+            return new Price(coin, price, currency, Instant.now());
         } catch (IOException | InterruptedException e) {
             logger.error("Error fetching price from Bitpanda: {}", e.getMessage());
             // TODO - handle exceptions appropriately
