@@ -51,15 +51,14 @@ public class BitpandaApiAdapter implements PriceService {
         
         try {            
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            logger.info("Response: " + response.body());           
+            logger.debug("Response: " + response.body());           
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response.body());
-            String strPrice = rootNode.path("data").get(0).path("attributes").path("price").asText();                        
-            logger.info("Price: {}", strPrice);
+            String strPrice = rootNode.path("data").get(0).path("attributes").path("price").asText();                                    
             BigDecimal price = new BigDecimal(strPrice);
             // All Bitpanda prices are in EUR
             if (currency == Currency.USD) {
-                price = rateConversionService.convert(currency, price);
+                price = rateConversionService.convert(Currency.EUR, price);
             }
             return new Price(coin, price, currency, Instant.now());
         } catch (IOException | InterruptedException e) {

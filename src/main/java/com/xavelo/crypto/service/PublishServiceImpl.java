@@ -27,7 +27,7 @@ public class PublishServiceImpl implements PublishService {
     @Override
     public void publishPrice(Price price) throws JsonProcessingException {
         String message = PriceSerializer.serializeToJson(price);
-        logger.info("publishing price update {}", message);
+        logger.debug("publishing price update {}", message);
         kafkaAdapter.publishPriceUpdate(CRYPTO_PRICE_UPDATES_TOPICS, price.getCoin().name(), message);
     }
 }
