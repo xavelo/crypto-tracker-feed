@@ -25,7 +25,7 @@ public class RateConversionAdapter {
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();            
             exchangeRate = jsonNode.getObject().getJSONObject("data").getDouble(currency.toString());
-            logger.info("Received exchange rate for {}: {}", currency.toString(), exchangeRate);            
+            logger.debug("Received exchange rate for {}: {}", currency.toString(), exchangeRate);            
         } else {
             logger.error("Failed to retrieve exchange rate for {}. Status code: {}", currency.toString(), response.getStatus());
         }

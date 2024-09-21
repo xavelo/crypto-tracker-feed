@@ -1,9 +1,5 @@
 package com.xavelo.crypto.service;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
-
 import org.springframework.stereotype.Component;
 
 import com.xavelo.crypto.adapter.RateConversionAdapter;
@@ -19,9 +15,9 @@ public class RateConversionServiceImpl implements RateConversionService {
     }
     
     @Override
-    public BigDecimal convertToUSD(Currency from, BigDecimal amount) {
+    public double convertToUSD(Currency from, double amount) {
         double rate = rateConversionAdapter.getRate(from);        
-        return amount.divide(BigDecimal.valueOf(rate), new MathContext(amount.scale(), RoundingMode.HALF_UP));
+        return amount / rate;
     }
 
 }

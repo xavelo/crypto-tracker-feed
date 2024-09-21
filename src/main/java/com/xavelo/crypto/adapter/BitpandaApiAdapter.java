@@ -55,7 +55,7 @@ public class BitpandaApiAdapter implements PriceService {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response.body());
             String strPrice = rootNode.path("data").get(0).path("attributes").path("price").asText();                                    
-            BigDecimal price = new BigDecimal(strPrice);
+            double price = Double.valueOf(strPrice);
             // All Bitpanda prices are in EUR
             if (currency == Currency.USD) {
                 price = rateConversionService.convertToUSD(Currency.EUR, price);

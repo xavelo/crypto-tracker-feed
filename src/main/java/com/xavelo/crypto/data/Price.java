@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 
 @Data
@@ -16,7 +15,7 @@ public class Price {
     @JsonProperty("coin")
     private Coin coin;
     @JsonProperty("price")
-    private BigDecimal price;
+    private double price;
     @JsonProperty("currency")
     private Currency currency;
     @JsonProperty("timestamp")

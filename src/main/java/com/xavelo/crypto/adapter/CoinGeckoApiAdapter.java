@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 
 import kong.unirest.HttpResponse;
@@ -51,7 +50,7 @@ public class CoinGeckoApiAdapter implements PriceService {
             logger.error("Failed to retrieve data. Status code: {}", response.getStatus());
         }
 
-        return new Price(coin, BigDecimal.valueOf(Long.valueOf(coinPrice)), currency, Instant.now());
+        return new Price(coin, Double.valueOf(coinPrice), currency, Instant.now());
 
     }
 
