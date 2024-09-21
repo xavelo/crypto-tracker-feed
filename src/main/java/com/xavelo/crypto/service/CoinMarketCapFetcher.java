@@ -10,7 +10,8 @@ import java.net.URL;
 import org.json.JSONObject; // Add this import statement
 import org.slf4j.Logger; // Add this import
 import org.slf4j.LoggerFactory; // Add this import
-
+import org.springframework.stereotype.Component;
+@Component
 public class CoinMarketCapFetcher implements FetchService {
 
     private static final Logger logger = LoggerFactory.getLogger(CoinMarketCapFetcher.class); // Initialize logger
@@ -49,9 +50,9 @@ public class CoinMarketCapFetcher implements FetchService {
             JSONObject jsonResponse = new JSONObject(response.toString());
             double bitcoinPrice = jsonResponse.getJSONArray("data")
                                                .getJSONObject(0)
-                                               .getJSONObject("quote") // Corrected this line
+                                               .getJSONObject("quote")
                                                .getJSONObject("USD")
-                                               .getDouble("price"); // Assuming you want the price
+                                               .getDouble("price"); 
 
             logger.info("Bitcoin Price: " + bitcoinPrice);
             return bitcoinPrice;
