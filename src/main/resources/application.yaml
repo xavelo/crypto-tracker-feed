@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: crypto-fetcher
+  kafka:
+    producer:
+      bootstrap-servers: my-cluster-kafka-bootstrap.kafka.svc:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+coingecko:
+  api:
+    url: https://api.coingecko.com/api/v3
+
+debug: false
