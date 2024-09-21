@@ -19,19 +19,19 @@ public class FetchServiceImpl implements FetchService {
 
     private final PriceService priceService;
     private final PublishService publishService;
-    private final CoinMarketCapFetcher coinMarketCapFetcher;
+    private final BitpandaFetcher bitpandaFetcher;
 
     @Autowired
-    public FetchServiceImpl(PriceService priceService, PublishService publishService, CoinMarketCapFetcher coinMarketCapFetcher) {
+    public FetchServiceImpl(PriceService priceService, PublishService publishService, BitpandaFetcher bitpandaFetcher) {
         this.priceService = priceService;
         this.publishService = publishService;
-        this.coinMarketCapFetcher = coinMarketCapFetcher;
+        this.bitpandaFetcher = bitpandaFetcher;
     }
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {
         // test
-        Price p = coinMarketCapFetcher.fetchPrice(coin, currency);
+        Price p = bitpandaFetcher.fetchPrice(coin, currency);
         logger.info("Fetching price for {} in {}", coin, currency); // Log fetching price
         return priceService.fetchPrice(coin, currency);
     }

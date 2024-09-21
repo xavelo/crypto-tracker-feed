@@ -1,11 +1,10 @@
-package com.xavelo.template;
+package com.xavelo.crypto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiKafkaProducerApplicationTests {
-
+class CrtyptoFetcherApplicationTests {
 
 	void contextLoads() {
 	}
