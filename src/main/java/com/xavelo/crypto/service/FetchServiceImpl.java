@@ -4,13 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.Coin;
 import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
-import com.xavelo.crypto.adapter.BitpandaApiAdapter;
 import com.xavelo.crypto.adapter.PriceFetchException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.slf4j.Logger; // Import Logger
-import org.slf4j.LoggerFactory; // Import LoggerFactory
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 @Primary
@@ -21,6 +21,7 @@ public class FetchServiceImpl implements FetchService {
     private final PriceService priceService;
     private final PublishService publishService;    
 
+    @Autowired
     public FetchServiceImpl(PriceService priceService, PublishService publishService) {
         this.priceService = priceService;
         this.publishService = publishService;        

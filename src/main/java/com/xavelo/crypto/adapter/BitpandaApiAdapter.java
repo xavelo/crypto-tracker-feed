@@ -10,6 +10,7 @@ import java.time.Instant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,6 +22,7 @@ import com.xavelo.crypto.service.PriceService;
 
 
 @Component
+@Primary
 public class BitpandaApiAdapter implements PriceService {
 
     private static final Logger logger = LoggerFactory.getLogger(BitpandaApiAdapter.class);
@@ -61,6 +63,8 @@ public class BitpandaApiAdapter implements PriceService {
                 return "1";
             case ETH:
                 return "5";
+            case XRP:
+                return "8";
             default:
                 return null;
         }

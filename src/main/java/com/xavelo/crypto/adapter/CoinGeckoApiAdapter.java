@@ -16,7 +16,6 @@ import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 
-@Component
 public class CoinGeckoApiAdapter implements PriceService {
 
     private static final Logger logger = LoggerFactory.getLogger(CoinGeckoApiAdapter.class);
