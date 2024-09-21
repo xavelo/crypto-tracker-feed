@@ -11,6 +11,7 @@ import org.json.JSONObject; // Add this import statement
 import org.slf4j.Logger; // Add this import
 import org.slf4j.LoggerFactory; // Add this import
 import org.springframework.stereotype.Component;
+
 @Component
 public class CoinMarketCapFetcher implements FetchService {
 

@@ -6,11 +6,13 @@ import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.adapter.PriceFetchException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger; // Import Logger
 import org.slf4j.LoggerFactory; // Import LoggerFactory
 
 @Component
+@Primary
 public class FetchServiceImpl implements FetchService {
 
     private static final Logger logger = LoggerFactory.getLogger(FetchServiceImpl.class); // Create logger instance
