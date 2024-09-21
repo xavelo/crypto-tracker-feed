@@ -3,10 +3,12 @@ package com.xavelo.crypto.data;
 public enum Coin {
 
     BTC("bitcoin"),
-    ETH("ethereum"),
-    HBAR("Hedera Hashgraph"),
+    ETH("ethereum"),    
     XRP("Ripple"),
-    ADA("Cardano");
+    LINK("Chainlink"),
+    ADA("Cardano"),
+    DOT("Chainlink"),
+    HBAR("Hedera Hashgraph");
 
     private final String fullName;
 

@@ -76,6 +76,12 @@ public class BitpandaApiAdapter implements PriceService {
                 return "5";
             case XRP:
                 return "8";
+            case ADA:
+                return "22";
+            case LINK:
+                return "25";
+            case DOT:
+                return "51";
             default:
                 return null;
         }
