@@ -31,7 +31,7 @@ public class CoinMarketCapFetcher implements FetchService {
     private double getCoinMarketCapData() {
         try {
             // Define the API endpoint
-            String urlString = "https://api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
+            String urlString = "https://coinmarketcap.com";
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
