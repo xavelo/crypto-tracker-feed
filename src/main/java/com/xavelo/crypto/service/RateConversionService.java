@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.xavelo.crypto.Currency;
 
 @Service
-public interface RateConversionService {
-    // converts amount to USD
+public interface RateConversionService {    
     BigDecimal convertToUSD(Currency from, BigDecimal amount);
 }

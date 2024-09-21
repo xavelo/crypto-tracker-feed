@@ -22,7 +22,7 @@ public class ScheduledPriceUpdater {
         this.fetchService = fetchService;
     }
 
-    @Scheduled(fixedRate = 30000) // Run every 30 seconds
+    @Scheduled(fixedRateString = "${crypto.fetcher.interval}")
     public void scheduledPriceUpdate() throws PriceFetchException, JsonProcessingException {
         logger.info("-----> scheduledPriceUpdate STARTED");
         fetchService.fetchAndPublishPrice(Coin.BTC, Currency.USD);
