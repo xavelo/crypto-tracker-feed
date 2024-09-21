@@ -12,3 +12,7 @@ coingecko:
     url: https://api.coingecko.com/api/v3
 
 debug: false
+
+crypto:
+  fetcher:
+    interval: 30000

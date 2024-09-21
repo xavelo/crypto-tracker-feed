@@ -9,5 +9,5 @@ import com.xavelo.crypto.Currency;
 @Service
 public interface RateConversionService {
     // converts amount to USD
-    BigDecimal convert(Currency from, BigDecimal amount);
+    BigDecimal convertToUSD(Currency from, BigDecimal amount);
 }

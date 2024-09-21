@@ -58,7 +58,7 @@ public class BitpandaApiAdapter implements PriceService {
             BigDecimal price = new BigDecimal(strPrice);
             // All Bitpanda prices are in EUR
             if (currency == Currency.USD) {
-                price = rateConversionService.convert(Currency.EUR, price);
+                price = rateConversionService.convertToUSD(Currency.EUR, price);
             }
             return new Price(coin, price, currency, Instant.now());
         } catch (IOException | InterruptedException e) {
