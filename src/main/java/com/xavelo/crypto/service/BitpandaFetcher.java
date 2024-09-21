@@ -41,11 +41,11 @@ public class BitpandaFetcher implements FetchService {
             // Log the response
             logger.info("Response: " + response.body());
             
-            // Parse the response to obtain the price
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(response.body());
-            String priceAttribute = jsonNode.path("data").get(0).path("attributes").path("price").asText();
-            logger.info("Price: {}", priceAttribute);
+            JsonNode rootNode = objectMapper.readTree(response.body());
+            String price = rootNode.path("data").get(0).path("attributes").path("price").asText();
+                        
+            logger.info("Price: {}", price);
             return new Price(); // Update this line to return the actual Price object based on the response
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

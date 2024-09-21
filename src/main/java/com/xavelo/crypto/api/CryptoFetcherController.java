@@ -10,7 +10,6 @@ import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.Price;
 import com.xavelo.crypto.adapter.PriceFetchException;
 import com.xavelo.crypto.service.FetchService;
-import com.xavelo.crypto.adapter.KafkaAdapter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
