@@ -5,6 +5,7 @@ public enum Coin {
     BTC("bitcoin"),
     ETH("ethereum"),
     HBAR("Hedera Hashgraph"),
+    XRP("Ripple"),
     ADA("Cardano");
 
     private final String fullName;

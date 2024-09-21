@@ -19,27 +19,22 @@ public class FetchServiceImpl implements FetchService {
     private static final Logger logger = LoggerFactory.getLogger(FetchServiceImpl.class); // Create logger instance
 
     private final PriceService priceService;
-    private final PublishService publishService;
-    private final BitpandaApiAdapter bitpandaApiAdapter;
+    private final PublishService publishService;    
 
-    public FetchServiceImpl(PriceService priceService, PublishService publishService, BitpandaApiAdapter bitpandaApiAdapter) {
+    public FetchServiceImpl(PriceService priceService, PublishService publishService) {
         this.priceService = priceService;
-        this.publishService = publishService;
-        this.bitpandaApiAdapter = bitpandaApiAdapter;
+        this.publishService = publishService;        
     }
 
     @Override
-    public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {
-        // test
-        Price p = bitpandaApiAdapter.fetchPrice(coin, currency);
-        logger.info("Price obtained from Bitpanda: {}", p);
-        logger.info("Fetching price for {} in {}", coin, currency); // Log fetching price
+    public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {                
+        logger.debug("Fetching price for {} in {}", coin, currency); // Log fetching price
         return priceService.fetchPrice(coin, currency);
     }
 
     @Override
     public Price fetchAndPublishPrice(Coin coin, Currency currency) throws PriceFetchException, JsonProcessingException {
-        logger.info("Fetching and publishing price for {} in {}", coin, currency); // Log fetching and publishing price
+        logger.debug("Fetching and publishing price for {} in {}", coin, currency); // Log fetching and publishing price
         Price price = priceService.fetchPrice(coin, currency);
         publishService.publishPrice(price);
         return price;

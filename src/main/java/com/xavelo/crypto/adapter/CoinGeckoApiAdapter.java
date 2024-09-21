@@ -7,7 +7,6 @@ import com.xavelo.crypto.service.PriceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -18,7 +17,6 @@ import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 
 @Component
-@Primary
 public class CoinGeckoApiAdapter implements PriceService {
 
     private static final Logger logger = LoggerFactory.getLogger(CoinGeckoApiAdapter.class);
