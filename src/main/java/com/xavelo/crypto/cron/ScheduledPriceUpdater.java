@@ -32,6 +32,7 @@ public class ScheduledPriceUpdater {
         fetchService.fetchAndPublishPrice(Coin.DOT, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.HBAR, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.LINK, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.RUNE, Currency.USD);
         logger.info("<----- scheduledPriceUpdate DONE");
     }
 

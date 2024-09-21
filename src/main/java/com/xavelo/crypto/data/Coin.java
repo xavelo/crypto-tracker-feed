@@ -8,7 +8,8 @@ public enum Coin {
     LINK("Chainlink"),
     ADA("Cardano"),
     DOT("Chainlink"),
-    HBAR("Hedera Hashgraph");
+    HBAR("Hedera Hashgraph"),
+    RUNE("Thorchain");
 
     private final String fullName;
 
