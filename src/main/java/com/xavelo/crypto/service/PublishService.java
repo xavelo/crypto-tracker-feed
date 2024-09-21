@@ -1,7 +1,8 @@
 package com.xavelo.crypto.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xavelo.crypto.Price;
+import com.xavelo.crypto.data.Price;
+
 import org.springframework.stereotype.Service;
 
 @Service

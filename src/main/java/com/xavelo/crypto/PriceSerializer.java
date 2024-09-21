@@ -3,6 +3,7 @@ package com.xavelo.crypto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.xavelo.crypto.data.Price;
 
 public class PriceSerializer {
     private static final ObjectMapper objectMapper = new ObjectMapper();

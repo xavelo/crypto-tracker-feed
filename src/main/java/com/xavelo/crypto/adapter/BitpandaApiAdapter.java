@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xavelo.crypto.Coin;
-import com.xavelo.crypto.Currency;
-import com.xavelo.crypto.Price;
+import com.xavelo.crypto.data.Coin;
+import com.xavelo.crypto.data.Currency;
+import com.xavelo.crypto.data.Price;
 import com.xavelo.crypto.service.PriceService;
 import com.xavelo.crypto.service.RateConversionService;
 

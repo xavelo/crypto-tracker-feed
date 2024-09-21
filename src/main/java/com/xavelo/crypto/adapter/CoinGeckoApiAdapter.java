@@ -1,8 +1,8 @@
 package com.xavelo.crypto.adapter;
 
-import com.xavelo.crypto.Coin;
-import com.xavelo.crypto.Currency;
-import com.xavelo.crypto.Price;
+import com.xavelo.crypto.data.Coin;
+import com.xavelo.crypto.data.Currency;
+import com.xavelo.crypto.data.Price;
 import com.xavelo.crypto.service.PriceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

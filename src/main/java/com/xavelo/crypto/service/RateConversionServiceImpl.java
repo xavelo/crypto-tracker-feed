@@ -6,8 +6,8 @@ import java.math.RoundingMode;
 
 import org.springframework.stereotype.Component;
 
-import com.xavelo.crypto.Currency;
 import com.xavelo.crypto.adapter.RateConversionAdapter;
+import com.xavelo.crypto.data.Currency;
 
 @Component
 public class RateConversionServiceImpl implements RateConversionService {

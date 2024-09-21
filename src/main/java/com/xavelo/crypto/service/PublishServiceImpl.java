@@ -1,9 +1,10 @@
 package com.xavelo.crypto.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xavelo.crypto.Price;
 import com.xavelo.crypto.PriceSerializer;
 import com.xavelo.crypto.adapter.KafkaAdapter;
+import com.xavelo.crypto.data.Price;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

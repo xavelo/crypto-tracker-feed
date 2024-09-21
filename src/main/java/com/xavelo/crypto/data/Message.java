@@ -1,4 +1,4 @@
-package com.xavelo.crypto.service;
+package com.xavelo.crypto.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

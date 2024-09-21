@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
-import com.xavelo.crypto.Currency;
+import com.xavelo.crypto.data.Currency;
 
 @Service
 public interface RateConversionService {    

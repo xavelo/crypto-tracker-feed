@@ -1,4 +1,4 @@
-package com.xavelo.crypto;
+package com.xavelo.crypto.data;
 
 public enum Currency {
 

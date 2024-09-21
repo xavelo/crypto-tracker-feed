@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.xavelo.crypto.Currency;
+import com.xavelo.crypto.data.Currency;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
