@@ -45,6 +45,12 @@
 			<artifactId>unirest-java</artifactId>
 			<version>3.11.09</version>
 		</dependency>
+		<!-- json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20210307</version> <!-- Specify a version -->
+		</dependency>
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

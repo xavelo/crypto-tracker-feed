@@ -15,17 +15,21 @@ public class FetchServiceImpl implements FetchService {
 
     private static final Logger logger = LoggerFactory.getLogger(FetchServiceImpl.class); // Create logger instance
 
-    private final PriceService priceService; // Injected via constructor
-    private final PublishService publishService; // Injected via constructor
+    private final PriceService priceService;
+    private final PublishService publishService;
+    private final CoinMarketCapFetcher coinMarketCapFetcher;
 
     @Autowired
-    public FetchServiceImpl(PriceService priceService, PublishService publishService) {
+    public FetchServiceImpl(PriceService priceService, PublishService publishService, CoinMarketCapFetcher coinMarketCapFetcher) {
         this.priceService = priceService;
         this.publishService = publishService;
+        this.coinMarketCapFetcher = coinMarketCapFetcher;
     }
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {
+        // test
+        Price p = coinMarketCapFetcher.fetchPrice(coin, currency);
         logger.info("Fetching price for {} in {}", coin, currency); // Log fetching price
         return priceService.fetchPrice(coin, currency);
     }
