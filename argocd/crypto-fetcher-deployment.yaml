@@ -5,7 +5,7 @@ metadata:
   annotations:
     commitID: "0fe7d0b30423d6725274f2ba2c9ab000b59d30de"
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: crypto-fetcher
