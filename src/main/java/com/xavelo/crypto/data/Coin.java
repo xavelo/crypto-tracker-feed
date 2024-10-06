@@ -9,6 +9,7 @@ public enum Coin {
     DOT("Chainlink"),
     FET("Fetch AI"),
     HBAR("Hedera Hashgraph"),
+    KAS("Kaspa"),
     LINK("Chainlink"),
     NEAR("NEAR Protocol"),
     RENDER("Render"),

@@ -83,6 +83,8 @@ public class BitpandaApiAdapter implements PriceService {
                 return "1112";
             case HBAR:
                 return "62";
+            case KAS:
+                return "2970";
             case LINK:
                 return "25";
             case NEAR:
