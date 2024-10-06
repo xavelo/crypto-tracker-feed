@@ -30,7 +30,7 @@ public class PublishServiceImpl implements PublishService {
     @Override
     public void publishPrice(Price price) throws JsonProcessingException {
         String message = PriceSerializer.serializeToJson(price);
-        String timestamp = ZonedDateTime.now(ZoneId.of("Europe/Madrid")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String timestamp = ZonedDateTime.ofInstant(price.getTimestamp(), ZoneId.of("Europe/Madrid")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         logger.info("publishing price update for {} timestamp {}", price.getCoin(), timestamp);
         kafkaAdapter.publishPriceUpdate(CRYPTO_PRICE_UPDATES_TOPICS, price.getCoin().name(), message);
     }
