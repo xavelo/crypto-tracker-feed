@@ -6,8 +6,6 @@ import com.xavelo.crypto.data.Coin;
 import com.xavelo.crypto.data.Currency;
 import com.xavelo.crypto.data.Price;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 @Service
