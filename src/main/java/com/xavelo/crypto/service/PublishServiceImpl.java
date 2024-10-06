@@ -5,11 +5,14 @@ import com.xavelo.crypto.PriceSerializer;
 import com.xavelo.crypto.adapter.KafkaAdapter;
 import com.xavelo.crypto.data.Price;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.ZoneId; // {{ edit_1 }}
 
 @Component
 public class PublishServiceImpl implements PublishService {
@@ -20,7 +23,6 @@ public class PublishServiceImpl implements PublishService {
 
     private final KafkaAdapter kafkaAdapter;
 
-    @Autowired
     public PublishServiceImpl(KafkaAdapter kafkaAdapter) {
         this.kafkaAdapter = kafkaAdapter;
     }
@@ -28,7 +30,8 @@ public class PublishServiceImpl implements PublishService {
     @Override
     public void publishPrice(Price price) throws JsonProcessingException {
         String message = PriceSerializer.serializeToJson(price);
-        logger.debug("publishing price update {}", message);
+        String timestamp = ZonedDateTime.now(ZoneId.of("Europe/Madrid")).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        logger.info("publishing price update for {} timestamp {}", price.getCoin(), timestamp);
         kafkaAdapter.publishPriceUpdate(CRYPTO_PRICE_UPDATES_TOPICS, price.getCoin().name(), message);
     }
 }
