@@ -93,6 +93,8 @@ public class BitpandaApiAdapter implements PriceService {
                 return "5";
             case RUNE:
                 return "1893";
+            case TRX:
+                return "2887";
             case XRP:
                 return "8";
             
