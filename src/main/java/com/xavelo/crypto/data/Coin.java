@@ -4,12 +4,17 @@ public enum Coin {
 
     BTC("bitcoin"),
     ETH("ethereum"),    
-    XRP("Ripple"),
-    LINK("Chainlink"),
     ADA("Cardano"),
+    BNB("BNB"),
     DOT("Chainlink"),
+    FET("Fetch AI"),
     HBAR("Hedera Hashgraph"),
-    RUNE("Thorchain");
+    LINK("Chainlink"),
+    NEAR("NEAR Protocol"),
+    RENDER("Render"),
+    RUNE("Thorchain"),
+    TRX("Tron"),
+    XRP("Ripple");
 
     private final String fullName;
 

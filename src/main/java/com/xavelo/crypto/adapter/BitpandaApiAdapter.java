@@ -1,7 +1,6 @@
 package com.xavelo.crypto.adapter;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -74,18 +73,27 @@ public class BitpandaApiAdapter implements PriceService {
                 return "1";
             case ETH:
                 return "5";
-            case XRP:
-                return "8";
             case ADA:
                 return "22";
-            case LINK:
-                return "25";
+            case BNB:
+                return "46";
             case DOT:
                 return "51";
+            case FET:
+                return "1112";
             case HBAR:
                 return "62";
+            case LINK:
+                return "25";
+            case NEAR:
+                return "197";
+            case RENDER:
+                return "5";
             case RUNE:
                 return "1893";
+            case XRP:
+                return "8";
+            
             default:
                 return null;
         }
