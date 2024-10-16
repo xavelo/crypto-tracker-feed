@@ -29,13 +29,13 @@ public class FetchServiceImpl implements FetchService {
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {                
-        logger.debug("Fetching price for {} in {}", coin, currency); // Log fetching price
+        logger.debug("-> fetchPrice - coin {} - currency {}", coin, currency);
         return priceService.fetchPrice(coin, currency);
     }
 
     @Override
     public Price fetchAndPublishPrice(Coin coin, Currency currency) throws PriceFetchException, JsonProcessingException {
-        logger.debug("Fetching and publishing price for {} in {}", coin, currency); // Log fetching and publishing price
+        logger.debug("-> fetchAndPublishPrice - coin{} - currency {}", coin, currency);
         Price price = priceService.fetchPrice(coin, currency);
         publishService.publishPrice(price);
         return price;
