@@ -1,22 +1,34 @@
 package com.xavelo.crypto.adapter;
 
+import java.util.concurrent.CompletableFuture;
+
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaAdapter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaAdapter.class);
+    private static final Logger logger = LoggerFactory.getLogger(KafkaAdapter.class);
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void publishPriceUpdate(String topic, String key, String message) {
-        LOGGER.info("-> topic '{}' --- key '{}' -  message '{}'", topic, key, message);
-        kafkaTemplate.send(topic, key, message);
+        logger.info("-> topic '{}' --- key '{}' -  message '{}'", topic, key, message);
+        ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, message);
+        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(record);
+        future.whenComplete((result, e) -> {
+            if (e == null) {
+                logger.info("Message successfully sent to '{}' [parition {}]", result.getRecordMetadata().topic(), result.getRecordMetadata().partition());                
+            } else {
+                logger.error("Error sending message: {}", e.getMessage(), e);
+            }
+        });
     }
 
 }
