@@ -50,7 +50,7 @@ public class CoinGeckoApiAdapter implements PriceService {
             logger.error("Failed to retrieve data. Status code: {}", response.getStatus());
         }
 
-        return new Price(coin, Double.valueOf(coinPrice), currency, Instant.now());
+        return new Price(coin, Double.valueOf(coinPrice), currency, Instant.now().toString());
 
     }
 

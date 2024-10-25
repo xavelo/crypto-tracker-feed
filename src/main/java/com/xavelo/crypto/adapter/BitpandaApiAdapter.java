@@ -60,7 +60,7 @@ public class BitpandaApiAdapter implements PriceService {
             if (currency == Currency.USD) {
                 price = rateConversionService.convertToUSD(Currency.EUR, price);
             }
-            return new Price(coin, price, currency, Instant.now().atZone(ZoneId.of("Europe/Madrid")).toInstant());
+            return new Price(coin, price, currency, Instant.now().atZone(ZoneId.of("Europe/Madrid")).toInstant().toString());
         } catch (IOException | InterruptedException e) {
             logger.error("Error fetching price from Bitpanda: {}", e.getMessage());
             // TODO - handle exceptions appropriately
