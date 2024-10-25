@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Date;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
@@ -50,7 +52,7 @@ public class CoinGeckoApiAdapter implements PriceService {
             logger.error("Failed to retrieve data. Status code: {}", response.getStatus());
         }
 
-        return new Price(coin, Double.valueOf(coinPrice), currency, Instant.now().toString());
+        return new Price(coin, Double.valueOf(coinPrice), currency, Date.from(Instant.now().atZone(ZoneId.of("Europe/Madrid")).toInstant()));
 
     }
 

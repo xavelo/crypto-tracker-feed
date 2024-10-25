@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +61,7 @@ public class BitpandaApiAdapter implements PriceService {
             if (currency == Currency.USD) {
                 price = rateConversionService.convertToUSD(Currency.EUR, price);
             }
-            return new Price(coin, price, currency, Instant.now().atZone(ZoneId.of("Europe/Madrid")).toInstant().toString());
+            return new Price(coin, price, currency, Date.from(Instant.now().atZone(ZoneId.of("Europe/Madrid")).toInstant()));
         } catch (IOException | InterruptedException e) {
             logger.error("Error fetching price from Bitpanda: {}", e.getMessage());
             // TODO - handle exceptions appropriately

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,5 +19,5 @@ public class Price {
     @JsonProperty("currency")
     private Currency currency;
     @JsonProperty("timestamp")
-    private String timestamp;
+    private Date timestamp;
 }
