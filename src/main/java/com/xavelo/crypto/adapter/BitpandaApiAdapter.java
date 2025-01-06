@@ -43,7 +43,8 @@ public class BitpandaApiAdapter implements PriceService {
         String assetId = getAssetId(coin);
         
         HttpClient client = HttpClient.newHttpClient();                
-        String requestBody = "{\"asset_ids\":[\"" + assetId + "\"]}";                
+        String requestBody = "{\"asset_ids\":[\"" + assetId + "\"]}";
+        logger.info("requestBody: {}", requestBody);
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(BITPANDA_API_URL))
             .header("Content-Type", "application/json")
@@ -52,7 +53,7 @@ public class BitpandaApiAdapter implements PriceService {
         
         try {            
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            logger.debug("Response: " + response.body());           
+            logger.info("Response: " + response.body());
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response.body());
             String strPrice = rootNode.path("data").get(0).path("attributes").path("price").asText();                                    
@@ -63,6 +64,7 @@ public class BitpandaApiAdapter implements PriceService {
             }
             return new Price(coin, price, currency, Date.from(Instant.now().atZone(ZoneId.of("Europe/Madrid")).toInstant()));
         } catch (IOException | InterruptedException e) {
+            logger.error(e.toString());
             logger.error("Error fetching price from Bitpanda: {}", e.getMessage());
             // TODO - handle exceptions appropriately
             return null;
