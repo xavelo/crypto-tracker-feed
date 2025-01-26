@@ -14,6 +14,8 @@ public enum Coin {
     LTC("Litecoin"),
     UNI("Uniswap"),
     AAVE("Aave"),
+    APT("Aptos"),
+    ONDO("Ondo"),
     FET("Fetch AI"),
     HBAR("Hedera Hashgraph"),
     KAS("Kaspa"),
