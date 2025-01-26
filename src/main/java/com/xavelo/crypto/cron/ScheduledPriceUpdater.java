@@ -27,9 +27,11 @@ public class ScheduledPriceUpdater {
         logger.info("-----> scheduledPriceUpdate STARTED");
         fetchService.fetchAndPublishPrice(Coin.BTC, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.ETH, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.SOL, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.ADA, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.BNB, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.DOT, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.AVAX, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.FET, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.HBAR, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.KAS, Currency.USD);

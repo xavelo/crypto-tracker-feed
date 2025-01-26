@@ -77,12 +77,16 @@ public class BitpandaApiAdapter implements PriceService {
                 return "1";
             case ETH:
                 return "5";
+            case SOL:
+                return "135";
             case ADA:
                 return "22";
             case BNB:
                 return "46";
             case DOT:
                 return "51";
+            case AVAX:
+                return "67";
             case FET:
                 return "1112";
             case HBAR:
