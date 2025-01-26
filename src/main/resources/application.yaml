@@ -15,4 +15,4 @@ debug: false
 
 crypto:
   fetcher:
-    interval: 6000000 # 60 seconds
+    interval: 600000 # 6 seconds
