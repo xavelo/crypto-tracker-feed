@@ -12,6 +12,8 @@ public enum Coin {
     XLM("Stellar"),
     SUI("SUI"),
     LTC("Litecoin"),
+    UNI("Uniswap"),
+    AAVE("Aave"),
     FET("Fetch AI"),
     HBAR("Hedera Hashgraph"),
     KAS("Kaspa"),

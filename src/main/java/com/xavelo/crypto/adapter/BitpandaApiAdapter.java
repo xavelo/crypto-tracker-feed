@@ -101,6 +101,10 @@ public class BitpandaApiAdapter implements PriceService {
                 return "2923";
             case LTC:
                 return "3";
+            case UNI:
+                return "56";
+            case AAVE:
+                return "58";
             case NEAR:
                 return "197";
             case RENDER:

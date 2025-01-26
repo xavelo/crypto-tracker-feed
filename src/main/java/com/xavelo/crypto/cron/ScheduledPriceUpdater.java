@@ -35,6 +35,8 @@ public class ScheduledPriceUpdater {
         fetchService.fetchAndPublishPrice(Coin.XLM, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.SUI, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.LTC, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.UNI, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.AAVE, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.FET, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.HBAR, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.KAS, Currency.USD);
