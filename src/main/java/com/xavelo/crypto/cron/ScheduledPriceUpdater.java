@@ -34,6 +34,7 @@ public class ScheduledPriceUpdater {
         fetchService.fetchAndPublishPrice(Coin.AVAX, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.XLM, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.SUI, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.ICP, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.LTC, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.UNI, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.AAVE, Currency.USD);
@@ -48,6 +49,7 @@ public class ScheduledPriceUpdater {
         fetchService.fetchAndPublishPrice(Coin.RUNE, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.TRX, Currency.USD);
         fetchService.fetchAndPublishPrice(Coin.XRP, Currency.USD);
+        fetchService.fetchAndPublishPrice(Coin.OM, Currency.USD);
         logger.info("<----- scheduledPriceUpdate DONE");
     }
 

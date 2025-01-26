@@ -99,6 +99,8 @@ public class BitpandaApiAdapter implements PriceService {
                 return "20";
             case SUI:
                 return "2923";
+            case ICP:
+                return "136";
             case LTC:
                 return "3";
             case UNI:
@@ -119,6 +121,8 @@ public class BitpandaApiAdapter implements PriceService {
                 return "2852";
             case ONDO:
                 return "3064";
+            case OM:
+                return "2621";
             
             default:
                 return null;
