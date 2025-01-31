@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScheduledPriceUpdater {
 
@@ -24,33 +26,26 @@ public class ScheduledPriceUpdater {
 
     @Scheduled(fixedRateString = "${crypto.fetcher.interval}")
     public void scheduledPriceUpdate() throws PriceFetchException, JsonProcessingException {
+        logger.info("");
         logger.info("-----> scheduledPriceUpdate STARTED");
-        fetchService.fetchAndPublishPrice(Coin.BTC, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.ETH, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.SOL, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.ADA, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.BNB, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.DOT, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.AVAX, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.XLM, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.SUI, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.ICP, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.LTC, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.UNI, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.AAVE, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.APT, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.ONDO, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.FET, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.HBAR, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.KAS, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.LINK, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.NEAR, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.RENDER, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.RUNE, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.TRX, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.XRP, Currency.USD);
-        fetchService.fetchAndPublishPrice(Coin.OM, Currency.USD);
-        logger.info("<----- scheduledPriceUpdate DONE");
+        long startTime = System.currentTimeMillis(); // Start timer
+
+        List<Coin> coins = List.of(
+                Coin.BTC, Coin.ETH, Coin.SOL, Coin.ADA, Coin.BNB, Coin.DOT, Coin.AVAX,
+                Coin.XLM, Coin.SUI, Coin.ICP, Coin.LTC, Coin.UNI, Coin.AAVE, Coin.APT,
+                Coin.ONDO, Coin.FET, Coin.HBAR, Coin.KAS, Coin.LINK, Coin.NEAR,
+                Coin.RENDER, Coin.RUNE, Coin.TRX, Coin.XRP, Coin.OM
+        );
+
+        for (Coin coin : coins) {
+            fetchService.fetchAndPublishPrice(coin, Currency.USD);
+        }
+
+        long endTime = System.currentTimeMillis(); // End timer
+        long duration = endTime - startTime;
+
+        logger.info("<----- scheduledPriceUpdate DONE in {} ms", duration);
+        logger.info("");
     }
 
 }
