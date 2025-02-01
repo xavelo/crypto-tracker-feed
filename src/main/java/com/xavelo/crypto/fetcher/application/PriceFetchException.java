@@ -1,4 +1,4 @@
-package com.xavelo.crypto.adapter;
+package com.xavelo.crypto.fetcher.application;
 
 public class PriceFetchException extends Exception {
 

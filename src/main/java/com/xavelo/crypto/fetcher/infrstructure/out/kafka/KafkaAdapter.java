@@ -1,4 +1,4 @@
-package com.xavelo.crypto.adapter;
+package com.xavelo.crypto.fetcher.infrstructure.out.kafka;
 
 import java.util.concurrent.CompletableFuture;
 

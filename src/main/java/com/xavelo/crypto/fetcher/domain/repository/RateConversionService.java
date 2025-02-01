@@ -1,8 +1,8 @@
-package com.xavelo.crypto.service;
+package com.xavelo.crypto.fetcher.domain.repository;
 
 import org.springframework.stereotype.Service;
 
-import com.xavelo.crypto.data.Currency;
+import com.xavelo.crypto.fetcher.domain.model.Currency;
 
 @Service
 public interface RateConversionService {    

@@ -1,4 +1,4 @@
-package com.xavelo.crypto.data;
+package com.xavelo.crypto.fetcher.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

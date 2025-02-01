@@ -1,4 +1,4 @@
-package com.xavelo.crypto.adapter;
+package com.xavelo.crypto.fetcher.infrstructure.out.external;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,16 +8,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit; 
 
-import com.xavelo.crypto.data.Currency;
+import com.xavelo.crypto.fetcher.domain.model.Currency;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 
 @Component
-public class RateConversionAdapter {    
+public class FreeCurrencyApiAdapter {
 
-    private static final Logger logger = LoggerFactory.getLogger(RateConversionAdapter.class);
+    private static final Logger logger = LoggerFactory.getLogger(FreeCurrencyApiAdapter.class);
     private Map<Currency, CachedRate> rateCache = new HashMap<>();
     private static final long TTL = TimeUnit.MINUTES.toMillis(10);
 

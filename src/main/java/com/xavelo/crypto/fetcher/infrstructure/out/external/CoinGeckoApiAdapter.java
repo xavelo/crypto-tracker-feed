@@ -1,9 +1,9 @@
-package com.xavelo.crypto.adapter;
+package com.xavelo.crypto.fetcher.infrstructure.out.external;
 
-import com.xavelo.crypto.data.Coin;
-import com.xavelo.crypto.data.Currency;
-import com.xavelo.crypto.data.Price;
-import com.xavelo.crypto.service.PriceService;
+import com.xavelo.crypto.fetcher.domain.model.Coin;
+import com.xavelo.crypto.fetcher.domain.model.Currency;
+import com.xavelo.crypto.fetcher.domain.model.Price;
+import com.xavelo.crypto.fetcher.domain.repository.PriceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

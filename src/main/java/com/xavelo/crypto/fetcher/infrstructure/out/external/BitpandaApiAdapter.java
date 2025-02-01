@@ -1,4 +1,4 @@
-package com.xavelo.crypto.adapter;
+package com.xavelo.crypto.fetcher.infrstructure.out.external;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,11 +16,11 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xavelo.crypto.data.Coin;
-import com.xavelo.crypto.data.Currency;
-import com.xavelo.crypto.data.Price;
-import com.xavelo.crypto.service.PriceService;
-import com.xavelo.crypto.service.RateConversionService;
+import com.xavelo.crypto.fetcher.domain.model.Coin;
+import com.xavelo.crypto.fetcher.domain.model.Currency;
+import com.xavelo.crypto.fetcher.domain.model.Price;
+import com.xavelo.crypto.fetcher.domain.repository.PriceService;
+import com.xavelo.crypto.fetcher.domain.repository.RateConversionService;
 
 
 @Component

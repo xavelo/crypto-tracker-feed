@@ -1,10 +1,10 @@
-package com.xavelo.crypto.cron;
+package com.xavelo.crypto.fetcher.infrstructure.in.cron;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xavelo.crypto.adapter.PriceFetchException;
-import com.xavelo.crypto.data.Coin;
-import com.xavelo.crypto.data.Currency;
-import com.xavelo.crypto.service.FetchService;
+import com.xavelo.crypto.fetcher.application.PriceFetchException;
+import com.xavelo.crypto.fetcher.domain.model.Coin;
+import com.xavelo.crypto.fetcher.domain.model.Currency;
+import com.xavelo.crypto.fetcher.domain.repository.FetchService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
