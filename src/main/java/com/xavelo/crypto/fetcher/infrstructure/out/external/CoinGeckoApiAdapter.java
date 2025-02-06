@@ -70,8 +70,10 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
 
     @Override
     public List<CoinData> getData(List<Coin> coins) {
-        List<CoinData> data = new ArrayList<>(coins.size());
 
+        List<CoinData> coinDataList = null;
+
+        //TODO get coins from param
         String url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,cardano";
         logger.info("GET request to CoinGecko API URL {}", url);
 
@@ -84,7 +86,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
             JsonNode jsonNode = response.getBody();
             logger.info("Received JSON: {}", jsonNode);
             try {
-                List<CoinData> coinDataList = CoinData.parseJson(jsonNode.toString());
+                coinDataList = CoinData.parseJson(jsonNode.toString());
                 coinDataList.forEach(coinData -> {
                     logger.info("coinData: {} - {}", coinData.getSymbol(), coinData.getCurrentPrice());
                 });
@@ -96,7 +98,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
             logger.error("Failed to retrieve data. Status code: {}", response.getStatus());
         }
 
-        return data;
+        return coinDataList;
     }
 
 }
