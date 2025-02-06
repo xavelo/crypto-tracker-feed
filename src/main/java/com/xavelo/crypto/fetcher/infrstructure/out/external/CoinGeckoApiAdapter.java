@@ -28,10 +28,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
 
     private static final String PRICE_URL_TEMPLATE = "%s/simple/price?ids=%s&vs_currencies=%s&x_cg_demo_api_key=%s";
 
-    //TODO - add to a seccret
-    private static final String COINGECKO_API_KEY = "CG-k26E4qpRpFckxcfdrcq3DTH7";
-
-    @Value("${COINGECKO_API_KEY}")
+    @Value("${coingecko.api.key}")
     private String getCoingeckoApiKey;
 
     private final String COINGECKO_BASE_URL;
@@ -43,7 +40,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
     @Override
     public Price fetchPrice(Coin coin, Currency currency) {
 
-        String url = String.format(PRICE_URL_TEMPLATE, COINGECKO_BASE_URL, coin.getFullName(), currency.name().toLowerCase(), COINGECKO_API_KEY);
+        String url = String.format(PRICE_URL_TEMPLATE, COINGECKO_BASE_URL, coin.getFullName(), currency.name().toLowerCase(), getCoingeckoApiKey);
         logger.debug("GET request to CoinGecko API URL {}", url);
 
         HttpResponse<JsonNode> response = Unirest.get(url)

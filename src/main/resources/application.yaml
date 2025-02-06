@@ -10,6 +10,7 @@ spring:
 coingecko:
   api:
     url: https://api.coingecko.com/api/v3
+    key: ${COINGECKO_API_KEY}
 
 debug: false
 
