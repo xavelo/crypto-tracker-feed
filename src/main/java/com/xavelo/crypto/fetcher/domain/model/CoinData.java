@@ -13,49 +13,49 @@ public class CoinData {
     private String name;
     @JsonProperty
     private String image;
-    @JsonProperty
+    @JsonProperty("current_price")
     private double currentPrice;
-    @JsonProperty
+    @JsonProperty("market_cap")
     private long marketCap;
-    @JsonProperty
+    @JsonProperty("market_cap_rank")
     private int marketCapRank;
-    @JsonProperty
+    @JsonProperty("fully_diluted_valuation")
     private long fullyDilutedValuation;
-    @JsonProperty
+    @JsonProperty("total_volume")
     private long totalVolume;
-    @JsonProperty
+    @JsonProperty("high_24h")
     private double high24h;
-    @JsonProperty
+    @JsonProperty("low_24h")
     private double low24h;
-    @JsonProperty
+    @JsonProperty("price_change_24h")
     private double priceChange24h;
-    @JsonProperty
+    @JsonProperty("price_change_percentage_24h")
     private double priceChangePercentage24h;
-    @JsonProperty
+    @JsonProperty("market_cap_change_24h")
     private double marketCapChange24h;
-    @JsonProperty
+    @JsonProperty("market_cap_change_percentage_24h")
     private double marketCapChangePercentage24h;
-    @JsonProperty
+    @JsonProperty("circulating_supply")
     private double circulatingSupply;
-    @JsonProperty
+    @JsonProperty("total_supply")
     private Double totalSupply;
-    @JsonProperty
+    @JsonProperty("max_supply")
     private Double maxSupply;
-    @JsonProperty
+    @JsonProperty("ath")
     private double ath;
-    @JsonProperty
+    @JsonProperty("ath_change_percentage")
     private double athChangePercentage;
-    @JsonProperty
+    @JsonProperty("ath_date")
     private String athDate;
     @JsonProperty
     private double atl;
-    @JsonProperty
+    @JsonProperty("atl_change_percentage")
     private double atlChangePercentage;
-    @JsonProperty
+    @JsonProperty("atl_date")
     private String atlDate;
     @JsonProperty
     private Roi roi;
-    @JsonProperty
+    @JsonProperty("last_updated")
     private String lastUpdated;
 
     // Nested class for ROI
