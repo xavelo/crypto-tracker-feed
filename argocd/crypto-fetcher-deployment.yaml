@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: crypto-fetcher-deployment
   annotations:
-    commitID: "480597f7a92e458b2752af00660b669a1d6fc1cb"
+    commitID: "541cf92c0f518c394d5924189e5282dfb15f06ad"
 spec:
   replicas: 2
   selector:
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: crypto-fetcher
-          image: 'xavelo/crypto-fetcher:480597f7a92e458b2752af00660b669a1d6fc1cb'
+          image: 'xavelo/crypto-fetcher:541cf92c0f518c394d5924189e5282dfb15f06ad'
           env:
             - name: COINGECKO_API_KEY
               valueFrom:
