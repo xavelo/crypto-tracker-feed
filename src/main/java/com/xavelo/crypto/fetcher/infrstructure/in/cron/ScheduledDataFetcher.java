@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.fetcher.application.PriceFetchException;
 import com.xavelo.crypto.fetcher.domain.model.Coin;
 import com.xavelo.crypto.fetcher.domain.model.Currency;
+import com.xavelo.crypto.fetcher.domain.repository.DataService;
 import com.xavelo.crypto.fetcher.domain.repository.FetchService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,37 +14,34 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ScheduledPriceUpdater {
+public class ScheduledDataFetcher {
 
-    private static final Logger logger = LoggerFactory.getLogger(ScheduledPriceUpdater.class);
+    private static final Logger logger = LoggerFactory.getLogger(ScheduledDataFetcher.class);
 
-    private final FetchService fetchService;    
+    private final DataService dataService;
 
-    public ScheduledPriceUpdater(FetchService fetchService) {
-        this.fetchService = fetchService;
+    public ScheduledDataFetcher(DataService dataService) {
+        this.dataService = dataService;
     }
 
-    @Scheduled(fixedRateString = "${crypto.price-updater.interval}")
+    @Scheduled(fixedRateString = "${crypto.data-fetcher.interval}")
     public void scheduledPriceUpdate() throws PriceFetchException, JsonProcessingException {
         logger.info("");
-        logger.info("-----> scheduledPriceUpdate STARTED");
+        logger.info("-----> ScheduledDataFetcher STARTED");
         long startTime = System.currentTimeMillis(); // Start timer
 
         List<Coin> coins = List.of(
-                Coin.BTC, Coin.ETH, Coin.SOL, Coin.ADA, Coin.BNB, Coin.DOT, Coin.AVAX,
-                Coin.XLM, Coin.SUI, Coin.ICP, Coin.LTC, Coin.UNI, Coin.AAVE, Coin.APT,
-                Coin.ONDO, Coin.FET, Coin.HBAR, Coin.KAS, Coin.LINK, Coin.NEAR,
-                Coin.RENDER, Coin.RUNE, Coin.TRX, Coin.XRP, Coin.OM
+                Coin.BTC, Coin.ETH, Coin.ADA
         );
 
         for (Coin coin : coins) {
-            fetchService.fetchAndPublishPrice(coin, Currency.USD);
+           dataService.getData(coins);
         }
 
         long endTime = System.currentTimeMillis(); // End timer
         long duration = endTime - startTime;
 
-        logger.info("<----- scheduledPriceUpdate DONE in {} ms", duration);
+        logger.info("<----- ScheduledDataFetcher DONE in {} ms", duration);
         logger.info("");
     }
 

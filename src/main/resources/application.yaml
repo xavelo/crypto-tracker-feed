@@ -14,5 +14,7 @@ coingecko:
 debug: false
 
 crypto:
-  fetcher:
-    interval: 30000 # 60 seconds
+  price-updater:
+    interval: 30000 # 30 seconds
+  data-fetcher:
+      interval: 30000 # 30 seconds
