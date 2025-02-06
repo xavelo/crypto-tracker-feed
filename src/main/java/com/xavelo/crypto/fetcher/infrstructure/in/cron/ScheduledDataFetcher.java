@@ -37,6 +37,7 @@ public class ScheduledDataFetcher {
         );
 
         for (CoinData coinData : dataService.getData(coins)) {
+            logger.info("publishing coin data for {}...", coinData.getSymbol());
             publishService.publishCoinData(coinData);
         }
 
