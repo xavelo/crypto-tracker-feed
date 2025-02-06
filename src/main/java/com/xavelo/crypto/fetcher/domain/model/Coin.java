@@ -2,8 +2,8 @@ package com.xavelo.crypto.fetcher.domain.model;
 
 public enum Coin {
 
-    BTC("bitcoin"),
-    ETH("ethereum"),    
+    BTC("Bitcoin"),
+    ETH("Ethereum"),    
     ADA("Cardano"),
     SOL("Solana"),
     BNB("BNB"),

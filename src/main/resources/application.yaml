@@ -18,4 +18,4 @@ crypto:
   price-updater:
     interval: 30000 # 30 seconds
   data-fetcher:
-      interval: 30000 # 30 seconds
+      interval: 300000 # 30 seconds
