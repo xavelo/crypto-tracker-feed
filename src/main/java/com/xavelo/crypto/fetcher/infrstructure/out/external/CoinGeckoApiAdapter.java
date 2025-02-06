@@ -31,6 +31,9 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
     //TODO - add to a seccret
     private static final String COINGECKO_API_KEY = "CG-k26E4qpRpFckxcfdrcq3DTH7";
 
+    @Value("${COINGECKO_API_KEY}")
+    private String getCoingeckoApiKey;
+
     private final String COINGECKO_BASE_URL;
 
     public CoinGeckoApiAdapter(@Value("${coingecko.api.url}") String apiUrl) {
@@ -70,7 +73,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
         logger.info("GET request to CoinGecko API URL {}", url);
 
         HttpResponse<JsonNode> response = Unirest.get(url)
-                .header("x-cg-demo-api-key", "CG-1Jad8ug4ejaqePVGrQCeLaTx")
+                .header("x-cg-demo-api-key", getCoingeckoApiKey)
                 .header("accept", "application/json")
                 .asJson();
 

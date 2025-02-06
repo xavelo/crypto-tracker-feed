@@ -8,6 +8,7 @@ import com.xavelo.crypto.fetcher.domain.model.Price;
 import com.xavelo.crypto.fetcher.domain.repository.FetchService;
 import com.xavelo.crypto.fetcher.domain.repository.PriceService;
 import com.xavelo.crypto.fetcher.domain.repository.PublishService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -16,18 +17,13 @@ import org.slf4j.LoggerFactory;
 
 @Component
 @Primary
+@RequiredArgsConstructor
 public class FetchServiceImpl implements FetchService {
 
     private static final Logger logger = LoggerFactory.getLogger(FetchServiceImpl.class); // Create logger instance
 
     private final PriceService priceService;
     private final PublishService publishService;
-
-    @Autowired
-    public FetchServiceImpl(PriceService priceService, PublishService publishService) {
-        this.priceService = priceService;
-        this.publishService = publishService;        
-    }
 
     @Override
     public Price fetchPrice(Coin coin, Currency currency) throws PriceFetchException {                

@@ -22,5 +22,11 @@ spec:
       containers:
         - name: crypto-fetcher
           image: 'xavelo/crypto-fetcher:f8bbfe7dfeb98a418f8ca4159524cc272739632b'
+          env:
+            - name: COINGECKO_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: coingecko-api-secret
+                  key: apiKey
           ports:
             - containerPort: 80
