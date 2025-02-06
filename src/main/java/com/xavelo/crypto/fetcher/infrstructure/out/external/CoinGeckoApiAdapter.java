@@ -2,7 +2,7 @@ package com.xavelo.crypto.fetcher.infrstructure.out.external;
 
 import com.xavelo.crypto.fetcher.domain.model.Coin;
 import com.xavelo.crypto.fetcher.domain.model.Currency;
-import com.xavelo.crypto.fetcher.domain.model.Data;
+import com.xavelo.crypto.fetcher.domain.model.CoinData;
 import com.xavelo.crypto.fetcher.domain.model.Price;
 import com.xavelo.crypto.fetcher.domain.repository.DataService;
 import com.xavelo.crypto.fetcher.domain.repository.PriceService;
@@ -50,7 +50,13 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
         String coinPrice = "0";
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();
-            logger.debug("Parsed JSON: {}", jsonNode);
+            logger.info("Parsed JSON: {}", jsonNode);
+            try {
+                List<CoinData> coins = CoinData.parseJson(jsonNode.toString());
+                logger.info("received {} price for {} coin", ((CoinData)coins.get(0)).getCurrentPrice(), coin.getFullName());
+            } catch (Exception e) {
+                logger.error("Error parsing JSON: {}", e.getMessage());
+            }            
 
             coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
             logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
@@ -63,8 +69,8 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
     }
 
     @Override
-    public List<Data> getData(List<Coin> coins) {
-        List<Data> data = new ArrayList<>(coins.size());
+    public List<CoinData> getData(List<Coin> coins) {
+        List<CoinData> data = new ArrayList<>(coins.size());
 
         String url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,cardano";
         logger.info("GET request to CoinGecko API URL {}", url);
@@ -78,6 +84,12 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();
             logger.info("Parsed JSON: {}", jsonNode);
+            try {
+                List<CoinData> coinDataList = CoinData.parseJson(jsonNode.toString());
+                logger.info("coinDataList: {}", coinDataList);              
+            } catch (Exception e) {
+                logger.error("Error parsing JSON: {}", e.getMessage());
+            }
 
             //coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
             //logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
