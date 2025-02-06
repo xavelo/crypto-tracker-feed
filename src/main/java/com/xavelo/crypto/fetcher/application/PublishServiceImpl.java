@@ -37,7 +37,7 @@ public class PublishServiceImpl implements PublishService {
     @Override
     public void publishCoinData(CoinData coinData) throws JsonProcessingException {
         logger.info("-> publishCoinData {}", coinData);
-        //String message = CoinDataSerializer.serializeToJson(coinData);
-        kafkaAdapter.publishMessage(CRYPTO_DATA_TOPIC, coinData.getSymbol(), coinData.toString());
+        String message = CoinDataSerializer.serializeToJson(coinData);
+        kafkaAdapter.publishMessage(CRYPTO_DATA_TOPIC, coinData.getSymbol(), message);
     }
 }
