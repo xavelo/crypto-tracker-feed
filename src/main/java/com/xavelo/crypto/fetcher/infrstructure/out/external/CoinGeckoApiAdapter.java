@@ -67,7 +67,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
         List<Data> data = new ArrayList<>(coins.size());
 
         String url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,cardano";
-        logger.debug("GET request to CoinGecko API URL {}", url);
+        logger.info("GET request to CoinGecko API URL {}", url);
 
         HttpResponse<JsonNode> response = Unirest.get(url)
                 .header("x-cg-demo-api-key", "CG-1Jad8ug4ejaqePVGrQCeLaTx")
@@ -77,7 +77,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
         String coinPrice = "0";
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();
-            logger.debug("Parsed JSON: {}", jsonNode);
+            logger.info("Parsed JSON: {}", jsonNode);
 
             //coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
             //logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
