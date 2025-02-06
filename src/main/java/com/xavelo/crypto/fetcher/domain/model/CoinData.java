@@ -2,8 +2,12 @@ package com.xavelo.crypto.fetcher.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class CoinData {
     @JsonProperty
     private String id;
@@ -78,11 +82,4 @@ public class CoinData {
                 .constructCollectionType(List.class, CoinData.class));
     }
 
-    public double getCurrentPrice() {
-        return currentPrice;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
 }

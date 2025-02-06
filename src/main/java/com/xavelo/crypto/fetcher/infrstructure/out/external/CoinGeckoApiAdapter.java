@@ -86,6 +86,9 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
             logger.info("Received JSON: {}", jsonNode);
             try {
                 List<CoinData> coinDataList = CoinData.parseJson(jsonNode.toString());
+                coinDataList.forEach(coinData -> {
+                    logger.info("coinData: {} - {}", coinData.getSymbol(), coinData.getCurrentPrice());
+                });
                 logger.info("coinDataList: {}", coinDataList);              
             } catch (Exception e) {
                 logger.error("Error parsing JSON: {}", e.getMessage());
