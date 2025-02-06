@@ -34,9 +34,7 @@ public class ScheduledDataFetcher {
                 Coin.BTC, Coin.ETH, Coin.ADA
         );
 
-        for (Coin coin : coins) {
-           dataService.getData(coins);
-        }
+        dataService.getData(coins);
 
         long endTime = System.currentTimeMillis(); // End timer
         long duration = endTime - startTime;
