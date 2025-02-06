@@ -80,7 +80,6 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
                 .header("accept", "application/json")
                 .asJson();
 
-        String coinPrice = "0";
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();
             logger.info("Received JSON: {}", jsonNode);
@@ -89,13 +88,10 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
                 coinDataList.forEach(coinData -> {
                     logger.info("coinData: {} - {}", coinData.getSymbol(), coinData.getCurrentPrice());
                 });
-                logger.info("coinDataList: {}", coinDataList);              
             } catch (Exception e) {
                 logger.error("Error parsing JSON: {}", e.getMessage());
             }
 
-            //coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
-            //logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
         } else {
             logger.error("Failed to retrieve data. Status code: {}", response.getStatus());
         }

@@ -6,6 +6,8 @@ import com.xavelo.crypto.fetcher.domain.model.Coin;
 import com.xavelo.crypto.fetcher.domain.model.Currency;
 import com.xavelo.crypto.fetcher.domain.repository.FetchService;
 
+import lombok.AllArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,15 +16,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ScheduledPriceUpdater {
 
     private static final Logger logger = LoggerFactory.getLogger(ScheduledPriceUpdater.class);
 
     private final FetchService fetchService;    
-
-    public ScheduledPriceUpdater(FetchService fetchService) {
-        this.fetchService = fetchService;
-    }
 
     @Scheduled(fixedRateString = "${crypto.price-updater.interval}")
     public void scheduledPriceUpdate() throws PriceFetchException, JsonProcessingException {

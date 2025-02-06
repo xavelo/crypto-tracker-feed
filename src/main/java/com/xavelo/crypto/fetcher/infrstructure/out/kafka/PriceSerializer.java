@@ -1,4 +1,4 @@
-package com.xavelo.crypto;
+package com.xavelo.crypto.fetcher.infrstructure.out.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

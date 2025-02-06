@@ -18,7 +18,7 @@ public class KafkaAdapter {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void publishPriceUpdate(String topic, String key, String message) {
+    public void publishMessage(String topic, String key, String message) {
         logger.info("-> topic '{}' --- key '{}' -  message '{}'", topic, key, message);
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, message);
         CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(record);

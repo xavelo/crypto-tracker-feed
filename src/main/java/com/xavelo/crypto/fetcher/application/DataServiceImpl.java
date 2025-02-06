@@ -4,7 +4,6 @@ import com.xavelo.crypto.fetcher.domain.model.Coin;
 import com.xavelo.crypto.fetcher.domain.model.CoinData;
 import com.xavelo.crypto.fetcher.domain.repository.DataService;
 import com.xavelo.crypto.fetcher.infrstructure.out.external.CoinGeckoApiAdapter;
-
 import lombok.AllArgsConstructor;
 
 import org.springframework.context.annotation.Primary;
