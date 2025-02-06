@@ -19,7 +19,3 @@ crypto:
     interval: 30000 # 30 seconds
   data-fetcher:
       interval: 30000 # 30 seconds
-
-logging:
-  level:
-    root: DEBUG 
