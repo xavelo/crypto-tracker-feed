@@ -1,4 +1,4 @@
-package com.xavelo.crypto.fetcher.infrstructure.in.cron;
+package com.xavelo.crypto.fetcher.infrastructure.in.cron;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.fetcher.application.PriceFetchException;

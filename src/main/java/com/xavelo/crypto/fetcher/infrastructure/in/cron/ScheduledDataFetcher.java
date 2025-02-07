@@ -1,10 +1,9 @@
-package com.xavelo.crypto.fetcher.infrstructure.in.cron;
+package com.xavelo.crypto.fetcher.infrastructure.in.cron;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.fetcher.application.PriceFetchException;
 import com.xavelo.crypto.fetcher.domain.model.Coin;
 import com.xavelo.crypto.fetcher.domain.model.CoinData;
-import com.xavelo.crypto.fetcher.domain.model.Currency;
 import com.xavelo.crypto.fetcher.domain.repository.DataService;
 import com.xavelo.crypto.fetcher.domain.repository.PublishService;
 
@@ -33,7 +32,7 @@ public class ScheduledDataFetcher {
         long startTime = System.currentTimeMillis(); // Start timer
 
         List<Coin> coins = List.of(
-                Coin.BTC, Coin.ETH, Coin.ADA
+                Coin.BTC, Coin.ETH, Coin.ADA, Coin.SOL, Coin.BNB, Coin.DOT, Coin.LINK
         );
 
         for (CoinData coinData : dataService.getData(coins)) {

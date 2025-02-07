@@ -3,7 +3,7 @@ package com.xavelo.crypto.fetcher.application;
 import com.xavelo.crypto.fetcher.domain.repository.RateConversionService;
 import org.springframework.stereotype.Component;
 
-import com.xavelo.crypto.fetcher.infrstructure.out.external.FreeCurrencyApiAdapter;
+import com.xavelo.crypto.fetcher.infrastructure.out.external.FreeCurrencyApiAdapter;
 import com.xavelo.crypto.fetcher.domain.model.Currency;
 
 @Component

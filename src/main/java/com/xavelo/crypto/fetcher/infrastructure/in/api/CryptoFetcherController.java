@@ -1,4 +1,4 @@
-package com.xavelo.crypto.fetcher.infrstructure.in.api;
+package com.xavelo.crypto.fetcher.infrastructure.in.api;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

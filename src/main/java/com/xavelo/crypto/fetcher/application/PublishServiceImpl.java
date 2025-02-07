@@ -2,15 +2,13 @@ package com.xavelo.crypto.fetcher.application;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xavelo.crypto.fetcher.domain.repository.PublishService;
-import com.xavelo.crypto.fetcher.infrstructure.out.kafka.KafkaAdapter;
-import com.xavelo.crypto.fetcher.infrstructure.out.kafka.PriceSerializer;
-import com.xavelo.crypto.fetcher.infrstructure.out.kafka.CoinDataSerializer;
+import com.xavelo.crypto.fetcher.infrastructure.out.kafka.KafkaAdapter;
+import com.xavelo.crypto.fetcher.infrastructure.out.kafka.PriceSerializer;
+import com.xavelo.crypto.fetcher.infrastructure.out.kafka.CoinDataSerializer;
 import com.xavelo.crypto.fetcher.domain.model.CoinData;
 import com.xavelo.crypto.fetcher.domain.model.Price;
 
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

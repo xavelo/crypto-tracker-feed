@@ -1,4 +1,4 @@
-package com.xavelo.crypto.fetcher.infrstructure.out.external;
+package com.xavelo.crypto.fetcher.infrastructure.out.external;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

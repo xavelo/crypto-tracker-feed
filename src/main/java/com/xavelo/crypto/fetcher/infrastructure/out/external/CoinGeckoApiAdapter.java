@@ -1,4 +1,4 @@
-package com.xavelo.crypto.fetcher.infrstructure.out.external;
+package com.xavelo.crypto.fetcher.infrastructure.out.external;
 
 import com.xavelo.crypto.fetcher.domain.model.Coin;
 import com.xavelo.crypto.fetcher.domain.model.Currency;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.time.Instant;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

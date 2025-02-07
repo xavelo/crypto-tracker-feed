@@ -7,7 +7,7 @@ public enum Coin {
     ADA("Cardano"),
     SOL("Solana"),
     BNB("BNB"),
-    DOT("Chainlink"),
+    DOT("DOT"),
     AVAX("Avalanche"),
     XLM("Stellar"),
     SUI("SUI"),
