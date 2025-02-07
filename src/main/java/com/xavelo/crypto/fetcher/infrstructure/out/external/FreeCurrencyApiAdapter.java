@@ -26,7 +26,7 @@ public class FreeCurrencyApiAdapter {
         // Check if the rate is already cached and not expired
         CachedRate cachedRate = rateCache.get(currency);
         if (cachedRate != null && !cachedRate.isExpired(TTL)) {
-            logger.info("getting rate from cache:{}", cachedRate.getRate());
+            logger.debug("getting rate from cache:{}", cachedRate.getRate());
             return cachedRate.getRate(); // Return cached rate
         }
 

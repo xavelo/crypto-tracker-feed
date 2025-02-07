@@ -18,4 +18,9 @@ crypto:
   price-updater:
     interval: 30000 # 30 seconds
   data-fetcher:
-      interval: 300000 # 30 seconds
+      interval: 30000 # 30 seconds
+
+logging:
+  level:
+    root: INFO
+    com.xavelo.crypto.fetcher.infrstructure.in.cron: DEBUG
