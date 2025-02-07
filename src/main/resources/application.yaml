@@ -23,4 +23,4 @@ crypto:
 logging:
   level:
     root: INFO
-    com.xavelo.crypto.fetcher.infrstructure.in.cron: DEBUG
+    com.xavelo.crypto.fetcher.infrastructure.in.cron: DEBUG
