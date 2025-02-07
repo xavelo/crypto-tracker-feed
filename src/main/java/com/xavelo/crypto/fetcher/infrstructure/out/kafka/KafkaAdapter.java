@@ -19,12 +19,12 @@ public class KafkaAdapter {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void publishMessage(String topic, String key, String message) {
-        logger.info("-> topic '{}' --- key '{}' -  message '{}'", topic, key, message);
+        logger.debug("-> topic '{}' --- key '{}' -  message '{}'", topic, key, message);
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, message);
         CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(record);
         future.whenComplete((result, e) -> {
             if (e == null) {
-                logger.info("Message successfully sent to '{}' [parition {}]", result.getRecordMetadata().topic(), result.getRecordMetadata().partition());                
+                logger.debug("Message successfully sent to '{}' [parition {}]", result.getRecordMetadata().topic(), result.getRecordMetadata().partition());
             } else {
                 logger.error("Error sending message: {}", e.getMessage(), e);
             }

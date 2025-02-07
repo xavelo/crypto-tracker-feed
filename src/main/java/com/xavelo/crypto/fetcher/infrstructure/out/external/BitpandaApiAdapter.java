@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;
@@ -25,6 +26,7 @@ import com.xavelo.crypto.fetcher.domain.repository.RateConversionService;
 
 @Component
 @Primary
+@AllArgsConstructor
 public class BitpandaApiAdapter implements PriceService {
 
     private static final Logger logger = LoggerFactory.getLogger(BitpandaApiAdapter.class);
@@ -33,10 +35,6 @@ public class BitpandaApiAdapter implements PriceService {
 
     private final RateConversionService rateConversionService;
 
-    public BitpandaApiAdapter(RateConversionService rateConversionService) {
-        this.rateConversionService = rateConversionService;
-    }
-
     @Override
     public Price fetchPrice(Coin coin, Currency currency) {
         logger.info("Fetching price from Bitpanda for {} in {}", coin, currency);
@@ -44,7 +42,7 @@ public class BitpandaApiAdapter implements PriceService {
         
         HttpClient client = HttpClient.newHttpClient();                
         String requestBody = "{\"asset_ids\":[\"" + assetId + "\"]}";
-        logger.info("requestBody: {}", requestBody);
+        logger.debug("requestBody: {}", requestBody);
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(BITPANDA_API_URL))
             .header("Content-Type", "application/json")
@@ -53,7 +51,7 @@ public class BitpandaApiAdapter implements PriceService {
         
         try {            
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            logger.info("Response: " + response.body());
+            logger.debug("Response: " + response.body());
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(response.body());
             String strPrice = rootNode.path("data").get(0).path("attributes").path("price").asText();                                    
