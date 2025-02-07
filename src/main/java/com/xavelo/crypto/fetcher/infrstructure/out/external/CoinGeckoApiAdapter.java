@@ -50,7 +50,7 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
         String coinPrice = "0";
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();
-            logger.info("Parsed JSON: {}", jsonNode);
+            logger.debug("Parsed JSON: {}", jsonNode);
             try {
                 List<CoinData> coins = CoinData.parseJson(jsonNode.toString());
                 logger.info("received {} price for {} coin", ((CoinData)coins.get(0)).getCurrentPrice(), coin.getFullName());
@@ -59,9 +59,9 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
             }            
 
             coinPrice = String.valueOf(jsonNode.getObject().getJSONObject(coin.getFullName().toLowerCase()).getInt(currency.name().toLowerCase()));
-            logger.info("received {} price for {} coin", coinPrice, coin.getFullName());
+            logger.debug("received {} price for {} coin", coinPrice, coin.getFullName());
         } else {
-            logger.error("Failed to retrieve data. Status code: {}", response.getStatus());
+            logger.debug("Failed to retrieve data. Status code: {}", response.getStatus());
         }
 
         return new Price(coin, Double.valueOf(coinPrice), currency, Date.from(Instant.now().atZone(ZoneId.of("Europe/Madrid")).toInstant()));
@@ -72,10 +72,16 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
     public List<CoinData> getData(List<Coin> coins) {
 
         List<CoinData> coinDataList = null;
+        String ids = ""; // bitcoin,ethereum,cardano
+        for(Coin coin : coins) {
+            ids += coin.getFullName().toLowerCase() + ",";
+        };
+        ids = ids.substring(0, ids.length()-2);
+        logger.debug("ids: " + ids);
 
         //TODO get coins from param
-        String url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,cardano";
-        logger.info("GET request to CoinGecko API URL {}", url);
+        String url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=" + ids;
+        logger.debug("GET request to CoinGecko API URL {}", url);
 
         HttpResponse<JsonNode> response = Unirest.get(url)
                 .header("x-cg-demo-api-key", getCoingeckoApiKey)
@@ -84,11 +90,11 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
 
         if (response.isSuccess()) {
             JsonNode jsonNode = response.getBody();
-            logger.info("Received JSON: {}", jsonNode);
+            logger.debug("Received JSON: {}", jsonNode);
             try {
                 coinDataList = CoinData.parseJson(jsonNode.toString());
                 coinDataList.forEach(coinData -> {
-                    logger.info("coinData: {} - {}", coinData.getSymbol(), coinData.getCurrentPrice());
+                    logger.debug("coinData: {} - {}", coinData.getSymbol(), coinData.getCurrentPrice());
                 });
             } catch (Exception e) {
                 logger.error("Error parsing JSON: {}", e.getMessage());
