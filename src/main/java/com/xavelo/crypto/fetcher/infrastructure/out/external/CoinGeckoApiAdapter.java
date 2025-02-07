@@ -75,10 +75,8 @@ public class CoinGeckoApiAdapter implements PriceService, DataService {
         for(Coin coin : coins) {
             ids += coin.getFullName().toLowerCase() + ",";
         };
-        ids = ids.substring(0, ids.length()-2);
-        logger.debug("ids: " + ids);
-
-        //TODO get coins from param
+        ids = ids.substring(0, ids.length()-1);
+        logger.debug("ids: {}", ids);
         String url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=" + ids;
         logger.debug("GET request to CoinGecko API URL {}", url);
 
