@@ -24,3 +24,4 @@ logging:
   level:
     root: INFO
     com.xavelo.crypto.fetcher.infrastructure.in.cron: DEBUG
+    com.xavelo.crypto.fetcher.infrastructure.out.external.CoinGeckoApiAdapter: DEBUG

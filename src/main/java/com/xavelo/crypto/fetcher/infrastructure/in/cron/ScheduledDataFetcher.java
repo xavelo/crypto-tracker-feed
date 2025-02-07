@@ -32,7 +32,8 @@ public class ScheduledDataFetcher {
         long startTime = System.currentTimeMillis(); // Start timer
 
         List<Coin> coins = List.of(
-                Coin.BTC, Coin.ETH, Coin.ADA, Coin.SOL, Coin.BNB, Coin.DOT, Coin.LINK
+                Coin.BTC, Coin.ETH, Coin.ADA, Coin.SOL, Coin.BNB, Coin.DOT, Coin.LINK, Coin.FET,
+                Coin.RUNE, Coin.KAS, Coin.LTC
         );
 
         for (CoinData coinData : dataService.getData(coins)) {
