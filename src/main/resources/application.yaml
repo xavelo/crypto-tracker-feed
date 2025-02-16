@@ -16,9 +16,9 @@ debug: false
 
 crypto:
   price-updater:
-    interval: 3600000 # 1h
+    interval: 60000 # 1m
   data-fetcher:
-    interval: 3600000 # 1h
+    interval: 60000 # 1m
 
 logging:
   level:
